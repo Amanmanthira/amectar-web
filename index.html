@@ -1,0 +1,497 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>amectar - Transforming Ideas Into Digital Reality</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap');
+        
+        * {
+            font-family: 'Inter', sans-serif;
+        }
+        
+        .gradient-bg {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+        }
+        
+        .glass-effect {
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+        }
+        
+        .floating-animation {
+            animation: float 6s ease-in-out infinite;
+        }
+        
+        @keyframes float {
+            0%, 100% { transform: translateY(0px); }
+            50% { transform: translateY(-20px); }
+        }
+        
+        .fade-in-up {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: all 0.8s ease;
+        }
+        
+        .fade-in-up.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+        
+        .code-animation {
+            overflow: hidden;
+            white-space: nowrap;
+            border-right: 3px solid #667eea;
+            animation: typing 4s steps(40, end), blink-caret 0.75s step-end infinite;
+        }
+        
+        @keyframes typing {
+            from { width: 0; }
+            to { width: 100%; }
+        }
+        
+        @keyframes blink-caret {
+            from, to { border-color: transparent; }
+            50% { border-color: #667eea; }
+        }
+        
+        .particle {
+            position: absolute;
+            width: 4px;
+            height: 4px;
+            background: #667eea;
+            border-radius: 50%;
+            animation: particle-float 8s infinite linear;
+        }
+        
+        @keyframes particle-float {
+            0% { transform: translateY(100vh) rotate(0deg); opacity: 0; }
+            10% { opacity: 1; }
+            90% { opacity: 1; }
+            100% { transform: translateY(-100vh) rotate(360deg); opacity: 0; }
+        }
+        
+        .hover-scale {
+            transition: transform 0.3s ease;
+        }
+        
+        .hover-scale:hover {
+            transform: scale(1.05);
+        }
+        
+        .glow-effect {
+            box-shadow: 0 0 20px rgba(102, 126, 234, 0.3);
+            transition: box-shadow 0.3s ease;
+        }
+        
+        .glow-effect:hover {
+            box-shadow: 0 0 30px rgba(102, 126, 234, 0.5);
+        }
+    </style>
+</head>
+<body class="bg-gray-900 text-white overflow-x-hidden">
+    <!-- Floating Particles -->
+    <div class="fixed inset-0 pointer-events-none z-0">
+        <div class="particle" style="left: 10%; animation-delay: 0s;"></div>
+        <div class="particle" style="left: 20%; animation-delay: 1s;"></div>
+        <div class="particle" style="left: 30%; animation-delay: 2s;"></div>
+        <div class="particle" style="left: 40%; animation-delay: 3s;"></div>
+        <div class="particle" style="left: 50%; animation-delay: 4s;"></div>
+        <div class="particle" style="left: 60%; animation-delay: 5s;"></div>
+        <div class="particle" style="left: 70%; animation-delay: 6s;"></div>
+        <div class="particle" style="left: 80%; animation-delay: 7s;"></div>
+        <div class="particle" style="left: 90%; animation-delay: 8s;"></div>
+    </div>
+
+    <!-- Navigation -->
+    <nav class="fixed top-0 w-full z-50 glass-effect">
+        <div class="max-w-7xl mx-auto px-6 py-4">
+            <div class="flex justify-between items-center">
+                <div class="text-3xl font-bold gradient-text">
+                    <span class="bg-gradient-to-r from-blue-400 to-purple-500 bg-clip-text text-transparent">amectar.</span>
+                </div>
+                <div class="hidden md:flex space-x-8">
+                    <a href="#home" class="hover:text-blue-400 transition-colors">Home</a>
+                    <a href="#services" class="hover:text-blue-400 transition-colors">Services</a>
+                    <a href="#portfolio" class="hover:text-blue-400 transition-colors">Portfolio</a>
+                    <a href="#team" class="hover:text-blue-400 transition-colors">Team</a>
+                    <a href="#contact" class="hover:text-blue-400 transition-colors">Contact</a>
+                </div>
+                <button class="md:hidden text-white">
+                    <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path>
+                    </svg>
+                </button>
+            </div>
+        </div>
+    </nav>
+
+    <section id="home" class="min-h-screen flex items-center justify-center relative overflow-hidden">
+
+  <!-- 🔵 Background Video -->
+  <video autoplay muted loop playsinline class="absolute inset-0 w-full h-full object-cover z-0">
+    <source src="videos/hero.mp4" type="video/mp4" />
+    Your browser does not support HTML5 video.
+  </video>
+
+  <!-- 🔷 Blue Overlay -->
+  <div class="absolute inset-0 bg-blue-900 bg-opacity-40 z-10"></div>
+
+  <!-- ✨ Hero Content -->
+  <div class="max-w-7xl w-full px-4 sm:px-6 md:px-10 text-center z-20">
+    <div class="fade-in-up py-16 sm:py-20 md:py-28">
+      <h1 class="text-5xl sm:text-5xl md:text-6xl lg:text-7xl font-bold mb-6 leading-tight">
+        We Craft
+        <span class="block bg-gradient-to-r from-yellow-400 to-pink-500 bg-clip-text text-transparent">
+          Digital Dreams
+        </span>
+      </h1>
+      <p class="text-base sm:text-lg md:text-xl lg:text-2xl mb-6 text-gray-200 max-w-3xl mx-auto">
+        Transforming innovative ideas into powerful software solutions that drive businesses forward in the digital age.
+      </p>
+      <div class="text-sm sm:text-base md:text-lg text-blue-300 mb-8 font-mono">
+        const success = innovation + dedication + code;
+      </div>
+      <div class="flex flex-col sm:flex-row gap-4 justify-center items-center sm:items-start">
+        <button class="bg-white text-gray-900 px-6 sm:px-8 py-3 sm:py-4 rounded-full font-semibold hover-scale glow-effect transition-all">
+          Start Your Project
+        </button>
+        <button class="border-2 border-white px-6 sm:px-8 py-3 sm:py-4 rounded-full font-semibold hover:bg-white hover:text-gray-900 transition-all">
+          View Our Work
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Floating Elements -->
+  <div class="absolute top-10 left-4 sm:top-20 sm:left-10 floating-animation">
+    <div class="w-12 sm:w-20 h-12 sm:h-20 bg-blue-500 rounded-lg opacity-20"></div>
+  </div>
+  <div class="absolute bottom-10 right-4 sm:bottom-20 sm:right-10 floating-animation" style="animation-delay: 2s;">
+    <div class="w-10 sm:w-16 h-10 sm:h-16 bg-purple-500 rounded-full opacity-20"></div>
+  </div>
+  <div class="absolute top-1/2 left-6 sm:left-20 floating-animation" style="animation-delay: 4s;">
+    <div class="w-8 sm:w-12 h-8 sm:h-12 bg-pink-500 rounded-lg opacity-20 rotate-45"></div>
+  </div>
+
+</section>
+
+
+    <!-- Services Section -->
+    <section id="services" class="py-20 bg-gray-800">
+        <div class="max-w-7xl mx-auto px-6">
+            <div class="text-center mb-16 fade-in-up">
+                <h2 class="text-5xl font-bold mb-6">Our Expertise</h2>
+                <p class="text-xl text-gray-300 max-w-3xl mx-auto">
+                    We specialize in cutting-edge technologies to deliver exceptional digital experiences
+                </p>
+            </div>
+            
+            <div class="grid md:grid-cols-3 gap-8">
+                <div class="glass-effect p-8 rounded-2xl hover-scale fade-in-up">
+                    <div class="text-4xl mb-4">🚀</div>
+                    <h3 class="text-2xl font-bold mb-4">Web Development</h3>
+                    <p class="text-gray-300 mb-6">
+                        Modern, responsive websites and web applications built with the latest technologies and frameworks.
+                    </p>
+                    <ul class="text-sm text-blue-300 space-y-2">
+                        <li>• React & Next.js</li>
+                        <li>• Node.js & Express</li>
+                        <li>• Progressive Web Apps</li>
+                    </ul>
+                </div>
+                
+                <div class="glass-effect p-8 rounded-2xl hover-scale fade-in-up" style="animation-delay: 0.2s;">
+                    <div class="text-4xl mb-4">📱</div>
+                    <h3 class="text-2xl font-bold mb-4">Mobile Apps</h3>
+                    <p class="text-gray-300 mb-6">
+                        Native and cross-platform mobile applications that provide seamless user experiences.
+                    </p>
+                    <ul class="text-sm text-blue-300 space-y-2">
+                        <li>• React Native</li>
+                        <li>• Flutter</li>
+                        <li>• iOS & Android</li>
+                    </ul>
+                </div>
+                
+                <div class="glass-effect p-8 rounded-2xl hover-scale fade-in-up" style="animation-delay: 0.4s;">
+                    <div class="text-4xl mb-4">☁️</div>
+                    <h3 class="text-2xl font-bold mb-4">Cloud Solutions</h3>
+                    <p class="text-gray-300 mb-6">
+                        Scalable cloud infrastructure and DevOps solutions for modern applications.
+                    </p>
+                    <ul class="text-sm text-blue-300 space-y-2">
+                        <li>• AWS & Azure</li>
+                        <li>• Docker & Kubernetes</li>
+                        <li>• CI/CD Pipelines</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Portfolio Section -->
+    <section id="portfolio" class="py-20 bg-gray-900">
+        <div class="max-w-7xl mx-auto px-6">
+            <div class="text-center mb-16 fade-in-up">
+                <h2 class="text-5xl font-bold mb-6">Success Stories</h2>
+                <p class="text-xl text-gray-300">
+                    Discover how we've helped businesses transform their digital presence
+                </p>
+            </div>
+            
+            <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+                <div class="bg-gradient-to-br from-blue-600 to-purple-700 p-8 rounded-2xl hover-scale fade-in-up glow-effect">
+                    <h3 class="text-2xl font-bold mb-4">FinTech Revolution</h3>
+                    <p class="text-gray-200 mb-6">
+                        Built a comprehensive financial platform serving 100K+ users with real-time transactions and AI-powered insights.
+                    </p>
+                    <div class="flex justify-between items-center">
+                        <span class="text-sm text-blue-200">React • Node.js • AWS</span>
+                        <span class="text-2xl">📈</span>
+                    </div>
+                </div>
+                
+                <div class="bg-gradient-to-br from-green-600 to-teal-700 p-8 rounded-2xl hover-scale fade-in-up glow-effect" style="animation-delay: 0.2s;">
+                    <h3 class="text-2xl font-bold mb-4">E-Commerce Giant</h3>
+                    <p class="text-gray-200 mb-6">
+                        Developed a scalable marketplace handling millions of products with advanced search and recommendation systems.
+                    </p>
+                    <div class="flex justify-between items-center">
+                        <span class="text-sm text-green-200">Next.js • MongoDB • Stripe</span>
+                        <span class="text-2xl">🛒</span>
+                    </div>
+                </div>
+                
+                <div class="bg-gradient-to-br from-pink-600 to-red-700 p-8 rounded-2xl hover-scale fade-in-up glow-effect" style="animation-delay: 0.4s;">
+                    <h3 class="text-2xl font-bold mb-4">Healthcare Innovation</h3>
+                    <p class="text-gray-200 mb-6">
+                        Created a telemedicine platform connecting patients with doctors, featuring secure video calls and health tracking.
+                    </p>
+                    <div class="flex justify-between items-center">
+                        <span class="text-sm text-pink-200">React Native • WebRTC • HIPAA</span>
+                        <span class="text-2xl">🏥</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+   <!-- Team Section -->
+<section id="team" class="relative py-24 bg-gray-900 overflow-hidden">
+  <div class="absolute inset-0 bg-gradient-to-br from-blue-800/20 to-purple-800/10 pointer-events-none"></div>
+
+  <div class="max-w-7xl mx-auto px-6 relative z-10">
+    <div class="text-center mb-16 fade-in-up">
+      <h2 class="text-5xl font-extrabold mb-4 bg-gradient-to-r from-cyan-400 via-blue-500 to-purple-500 bg-clip-text text-transparent">
+        Meet the Visionaries
+      </h2>
+      <p class="text-xl text-gray-300">The brilliant minds powering amectar's success</p>
+    </div>
+
+    <div class="grid sm:grid-cols-2 lg:grid-cols-4 gap-10">
+      <!-- Member -->
+      <div class="group relative p-6 bg-gray-800 rounded-3xl shadow-xl transform hover:scale-105 transition-all duration-500 hover:shadow-blue-500/40 fade-in-up">
+        <div class="w-32 h-32 mx-auto mb-4 rounded-full overflow-hidden border-4 border-gradient-to-br from-blue-400 to-purple-500 shadow-lg">
+          <img src="https://media.licdn.com/dms/image/v2/D5603AQGqibEjIT1vhg/profile-displayphoto-scale_400_400/B56ZflXLnQHEAk-/0/1751899752829?e=1756944000&v=beta&t=bTinU_TdzlGAdz5mFcP80Un59hg_TUxno_UE7l16_PI" alt="Alex Chen" class="w-full h-full object-cover">
+        </div>
+        <h3 class="text-xl font-bold text-white text-center">Aman Manthira</h3>
+        <p class="text-blue-400 text-sm mb-2 text-center">Software Engineer / Founder</p>
+        <p class="text-gray-400 text-sm text-center">Full-stack wizard crafting scalable solutions</p>
+      </div>
+
+      <!-- Member -->
+      <div class="group relative p-6 bg-gray-800 rounded-3xl shadow-xl transform hover:scale-105 transition-all duration-500 hover:shadow-green-500/40 fade-in-up">
+        <div class="w-32 h-32 mx-auto mb-4 rounded-full overflow-hidden border-4 border-gradient-to-br from-green-400 to-teal-500 shadow-lg">
+          <img src="https://randomuser.me/api/portraits/women/44.jpg" alt="Sarah Kim" class="w-full h-full object-cover">
+        </div>
+        <h3 class="text-xl font-bold text-white text-center">Sarah Kim</h3>
+        <p class="text-green-400 text-sm mb-2 text-center">UX/UI Designer</p>
+        <p class="text-gray-400 text-sm text-center">Design thinking expert creating intuitive user experiences</p>
+      </div>
+
+      <!-- Member -->
+      <div class="group relative p-6 bg-gray-800 rounded-3xl shadow-xl transform hover:scale-105 transition-all duration-500 hover:shadow-pink-500/40 fade-in-up">
+        <div class="w-32 h-32 mx-auto mb-4 rounded-full overflow-hidden border-4 border-gradient-to-br from-pink-400 to-red-500 shadow-lg">
+          <img src="https://randomuser.me/api/portraits/men/55.jpg" alt="Mike Rodriguez" class="w-full h-full object-cover">
+        </div>
+        <h3 class="text-xl font-bold text-white text-center">Mike Rodriguez</h3>
+        <p class="text-pink-400 text-sm mb-2 text-center">Project Manager</p>
+        <p class="text-gray-400 text-sm text-center">Agile methodology expert ensuring timely delivery</p>
+      </div>
+
+      <!-- Member -->
+      <div class="group relative p-6 bg-gray-800 rounded-3xl shadow-xl transform hover:scale-105 transition-all duration-500 hover:shadow-yellow-500/40 fade-in-up">
+        <div class="w-32 h-32 mx-auto mb-4 rounded-full overflow-hidden border-4 border-gradient-to-br from-yellow-400 to-orange-500 shadow-lg">
+          <img src="https://randomuser.me/api/portraits/women/65.jpg" alt="Dr. Lisa Wang" class="w-full h-full object-cover">
+        </div>
+        <h3 class="text-xl font-bold text-white text-center">Dr. Lisa Wang</h3>
+        <p class="text-yellow-400 text-sm mb-2 text-center">AI Specialist</p>
+        <p class="text-gray-400 text-sm text-center">Machine learning pioneer integrating AI into applications</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Contact Section -->
+<section id="contact" class="py-24 px-6 bg-gradient-to-br from-[#0f2027] via-[#203a43] to-[#2c5364] text-white">
+  <div class="max-w-5xl mx-auto text-center space-y-10">
+    
+    <!-- Heading -->
+    <div class="animate-fade-in-up">
+      <h2 class="text-5xl font-extrabold leading-tight tracking-tight mb-4">Let's Build the Future. Together.</h2>
+      <p class="text-xl text-gray-300 max-w-2xl mx-auto">
+        We collaborate across the globe — from New York to Tokyo, Cape Town to Antarctica 🌍❄️. 
+        Wherever you are, we're already there.
+      </p>
+    </div>
+
+    <!-- Glass Card Contact Info -->
+    <div class="glass-effect bg-white/5 backdrop-blur-md p-10 rounded-3xl shadow-2xl animate-slide-up">
+      <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8 text-center">
+
+        <div class="transition-transform transform hover:scale-105">
+          <div class="text-4xl mb-3">📧</div>
+          <h3 class="text-xl font-bold mb-1">Email</h3>
+          <p class="text-gray-300">helloamectar@gmail.com</p>
+        </div>
+
+        <div class="transition-transform transform hover:scale-105">
+          <div class="text-4xl mb-3">📞</div>
+          <h3 class="text-xl font-bold mb-1">Phone</h3>
+          <p class="text-gray-300">+94 (74) 1800-901</p>
+        </div>
+
+        <div class="transition-transform transform hover:scale-105">
+          <div class="text-4xl mb-3">🌐</div>
+          <h3 class="text-xl font-bold mb-1">Global Reach</h3>
+          <p class="text-gray-300">Everywhere. Even Antarctica.</p>
+        </div>
+
+      </div>
+    </div>
+
+    <!-- CTA Button -->
+    <div class="animate-fade-in-up">
+      <button class="bg-white text-gray-900 px-10 py-4 rounded-full font-bold text-lg shadow-lg hover:shadow-2xl transform hover:scale-105 transition-all duration-300">
+        Start Your Project Today 🚀
+      </button>
+    </div>
+  </div>
+</section>
+
+
+   <!-- Ultra Modern Animated Footer -->
+<footer class="relative bg-gray-900 overflow-hidden text-white pt-16 pb-12 border-t border-gray-800">
+  <!-- Animated Background Dots -->
+  <div class="absolute inset-0 pointer-events-none">
+    <div class="w-full h-full animate-pulse bg-gradient-radial from-purple-600/10 via-transparent to-transparent"></div>
+    <div class="absolute top-10 left-10 w-2 h-2 bg-blue-400 rounded-full animate-bounce"></div>
+    <div class="absolute top-1/3 right-16 w-3 h-3 bg-pink-400 rounded-full animate-ping"></div>
+    <div class="absolute bottom-16 left-1/2 w-2.5 h-2.5 bg-green-400 rounded-full animate-bounce delay-500"></div>
+  </div>
+
+  <div class="relative z-10 max-w-7xl mx-auto px-6">
+    <!-- Logo + Nav -->
+    <div class="flex flex-col md:flex-row justify-between items-center mb-10 gap-8 animate-fade-up">
+      <div class="text-3xl font-extrabold tracking-tight">
+        <span class="bg-gradient-to-r from-cyan-400 to-purple-500 bg-clip-text text-transparent">
+          amectar softwares
+        </span>
+        <p class="text-sm text-gray-400 mt-1">Crafting the future from Earth, Moon, and even Antarctica ❄️</p>
+      </div>
+      <div class="flex flex-wrap gap-6 text-lg font-medium">
+        <a href="#" class="hover:text-cyan-400 transition-all hover:scale-110 duration-300">Privacy</a>
+        <a href="#" class="hover:text-purple-400 transition-all hover:scale-110 duration-300">Terms</a>
+        <a href="#" class="hover:text-pink-400 transition-all hover:scale-110 duration-300">LinkedIn</a>
+        <a href="#" class="hover:text-blue-400 transition-all hover:scale-110 duration-300">GitHub</a>
+        <a href="#" class="hover:text-yellow-400 transition-all hover:scale-110 duration-300">Twitter</a>
+      </div>
+    </div>
+
+    <!-- Social Media Glow Icons -->
+    <div class="flex justify-center gap-6 mb-8 animate-fade-in">
+      <a href="#" class="w-10 h-10 rounded-full flex items-center justify-center bg-white/10 hover:bg-white/20 transition hover:scale-125 text-cyan-400 shadow-lg">
+        <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24"><path d="M22 12a10 10 0 10-11.5 9.87v-6.99H8v-2.88h2.5V9.5c0-2.47 1.49-3.84 3.77-3.84 1.09 0 2.23.19 2.23.19v2.45h-1.25c-1.23 0-1.61.76-1.61 1.54v1.85H17l-.4 2.88h-2.35v6.99A10 10 0 0022 12z" /></svg>
+      </a>
+      <a href="#" class="w-10 h-10 rounded-full flex items-center justify-center bg-white/10 hover:bg-white/20 transition hover:scale-125 text-purple-400 shadow-lg">
+        <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24"><path d="M12 2.04c-5.5 0-9.96 4.46-9.96 9.96 0 4.42 3.59 8.06 8.17 8.94v-6.33h-2.45v-2.61h2.45V9.69c0-2.42 1.44-3.75 3.64-3.75 1.05 0 2.15.19 2.15.19v2.36h-1.21c-1.2 0-1.57.74-1.57 1.5v1.8h2.67l-.43 2.61h-2.24v6.33c4.58-.88 8.17-4.52 8.17-8.94 0-5.5-4.46-9.96-9.96-9.96z"/></svg>
+      </a>
+    </div>
+
+    <!-- Footer Bottom -->
+    <div class="text-center text-gray-400 text-sm animate-fade-in">
+      <p>&copy; 2025 <span class="text-white font-semibold">amectar softwares</span>. All rights reserved.</p>
+      <p class="text-xs mt-2 text-gray-500">Globally connected 🌍 — Serving clients from Silicon Valley to Antarctica 🧊.</p>
+    </div>
+  </div>
+</footer>
+
+
+    <script>
+        // Smooth scrolling for navigation links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            });
+        });
+
+        // Intersection Observer for fade-in animations
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -50px 0px'
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('visible');
+                }
+            });
+        }, observerOptions);
+
+        // Observe all fade-in-up elements
+        document.querySelectorAll('.fade-in-up').forEach(el => {
+            observer.observe(el);
+        });
+
+        // Add interactive hover effects to buttons
+        document.querySelectorAll('button').forEach(button => {
+            button.addEventListener('mouseenter', function() {
+                this.style.transform = 'scale(1.05)';
+            });
+            
+            button.addEventListener('mouseleave', function() {
+                this.style.transform = 'scale(1)';
+            });
+        });
+
+        // Dynamic particle generation
+        function createParticle() {
+            const particle = document.createElement('div');
+            particle.className = 'particle';
+            particle.style.left = Math.random() * 100 + '%';
+            particle.style.animationDelay = Math.random() * 8 + 's';
+            document.querySelector('.fixed.inset-0').appendChild(particle);
+            
+            setTimeout(() => {
+                particle.remove();
+            }, 8000);
+        }
+
+        // Create new particles periodically
+        setInterval(createParticle, 2000);
+    </script>
+<script>(function(){function c(){var b=a.contentDocument||a.contentWindow.document;if(b){var d=b.createElement('script');d.innerHTML="window.__CF$cv$params={r:'9682a74ef09dde84',t:'MTc1NDAyMzE4Ni4wMDAwMDA='};var a=document.createElement('script');a.nonce='';a.src='/cdn-cgi/challenge-platform/scripts/jsd/main.js';document.getElementsByTagName('head')[0].appendChild(a);";b.getElementsByTagName('head')[0].appendChild(d)}}if(document.body){var a=document.createElement('iframe');a.height=1;a.width=1;a.style.position='absolute';a.style.top=0;a.style.left=0;a.style.border='none';a.style.visibility='hidden';document.body.appendChild(a);if('loading'!==document.readyState)c();else if(window.addEventListener)document.addEventListener('DOMContentLoaded',c);else{var e=document.onreadystatechange||function(){};document.onreadystatechange=function(b){e(b);'loading'!==document.readyState&&(document.onreadystatechange=e,c())}}}})();</script></body>
+</html>
