@@ -1,497 +1,893 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>amectar - Transforming Ideas Into Digital Reality</title>
-    <script src="https://cdn.tailwindcss.com"></script>
-    <style>
-        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap');
-        
-        * {
-            font-family: 'Inter', sans-serif;
-        }
-        
-        .gradient-bg {
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-        }
-        
-        .glass-effect {
-            background: rgba(255, 255, 255, 0.1);
-            backdrop-filter: blur(10px);
-            border: 1px solid rgba(255, 255, 255, 0.2);
-        }
-        
-        .floating-animation {
-            animation: float 6s ease-in-out infinite;
-        }
-        
-        @keyframes float {
-            0%, 100% { transform: translateY(0px); }
-            50% { transform: translateY(-20px); }
-        }
-        
-        .fade-in-up {
-            opacity: 0;
-            transform: translateY(30px);
-            transition: all 0.8s ease;
-        }
-        
-        .fade-in-up.visible {
-            opacity: 1;
-            transform: translateY(0);
-        }
-        
-        .code-animation {
-            overflow: hidden;
-            white-space: nowrap;
-            border-right: 3px solid #667eea;
-            animation: typing 4s steps(40, end), blink-caret 0.75s step-end infinite;
-        }
-        
-        @keyframes typing {
-            from { width: 0; }
-            to { width: 100%; }
-        }
-        
-        @keyframes blink-caret {
-            from, to { border-color: transparent; }
-            50% { border-color: #667eea; }
-        }
-        
-        .particle {
-            position: absolute;
-            width: 4px;
-            height: 4px;
-            background: #667eea;
-            border-radius: 50%;
-            animation: particle-float 8s infinite linear;
-        }
-        
-        @keyframes particle-float {
-            0% { transform: translateY(100vh) rotate(0deg); opacity: 0; }
-            10% { opacity: 1; }
-            90% { opacity: 1; }
-            100% { transform: translateY(-100vh) rotate(360deg); opacity: 0; }
-        }
-        
-        .hover-scale {
-            transition: transform 0.3s ease;
-        }
-        
-        .hover-scale:hover {
-            transform: scale(1.05);
-        }
-        
-        .glow-effect {
-            box-shadow: 0 0 20px rgba(102, 126, 234, 0.3);
-            transition: box-shadow 0.3s ease;
-        }
-        
-        .glow-effect:hover {
-            box-shadow: 0 0 30px rgba(102, 126, 234, 0.5);
-        }
-    </style>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Amectar — Business Software Solutions</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Geist:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+html { scroll-behavior: smooth; }
+:root {
+  --ink: #0a0f1a;
+  --ink-60: rgba(10,15,26,0.6);
+  --ink-30: rgba(10,15,26,0.3);
+  --ink-10: rgba(10,15,26,0.07);
+  --ink-05: rgba(10,15,26,0.04);
+  --white: #ffffff;
+  --off: #f6f9fc;
+  --blue: #0062f5;
+  --blue-l: #3381ff;
+  --blue-pale: #e7efff;
+  --blue-pale2: #eff4ff;
+  --stroke: rgba(10,15,26,0.09);
+  --stroke-b: rgba(0,98,245,0.15);
+}
+body { font-family:'Geist',-apple-system,sans-serif; background:var(--white); color:var(--ink); overflow-x:hidden; -webkit-font-smoothing:antialiased; cursor:none; }
+#cur { position:fixed; width:8px; height:8px; background:var(--blue); border-radius:50%; pointer-events:none; z-index:9999; transform:translate(-50%,-50%); transition:width .2s,height .2s; }
+#cur-o { position:fixed; width:32px; height:32px; border:1.5px solid var(--blue); border-radius:50%; pointer-events:none; z-index:9998; transform:translate(-50%,-50%); opacity:.35; transition:width .25s,height .25s; }
+body.hov #cur { width:13px; height:13px; }
+body.hov #cur-o { width:48px; height:48px; opacity:.15; }
+
+/* ── NAV ── */
+nav { position:fixed; top:0; left:0; right:0; z-index:100; height:64px; display:flex; align-items:center; justify-content:space-between; padding:0 48px; background:rgba(255,255,255,.88); backdrop-filter:blur(24px) saturate(180%); border-bottom:1px solid var(--stroke); transition:box-shadow .3s; }
+.logo-mark { display:flex; align-items:center; gap:10px; font-weight:600; font-size:1.06rem; letter-spacing:-.02em; color:var(--ink); text-decoration:none; }
+.logo-ico { width:29px; height:29px; background:var(--blue); border-radius:7px; display:flex; align-items:center; justify-content:center; position:relative; overflow:hidden; }
+.logo-ico::before { content:''; position:absolute; width:16px; height:16px; border:2px solid white; border-radius:50%; top:50%; left:50%; transform:translate(-50%,-50%); }
+.logo-ico::after { content:''; position:absolute; width:5px; height:5px; background:white; border-radius:50%; top:50%; left:50%; transform:translate(-50%,-50%); }
+.nav-c { display:flex; gap:2px; }
+.nav-c a { font-size:.82rem; font-weight:500; color:var(--ink-60); text-decoration:none; padding:6px 13px; border-radius:100px; transition:all .2s; letter-spacing:.005em; }
+.nav-c a:hover { color:var(--ink); background:var(--ink-05); }
+.nav-r { display:flex; align-items:center; gap:10px; }
+.nav-ghost { font-size:.82rem; font-weight:500; color:var(--ink-60); text-decoration:none; padding:8px 14px; border-radius:100px; transition:color .2s; }
+.nav-ghost:hover { color:var(--ink); }
+.nav-btn { font-size:.82rem; font-weight:600; color:white; background:var(--ink); text-decoration:none; padding:9px 20px; border-radius:100px; border:1.5px solid var(--ink); transition:all .25s; letter-spacing:.01em; }
+.nav-btn:hover { background:var(--blue); border-color:var(--blue); transform:translateY(-1px); }
+
+/* ── HERO ── */
+#hero { min-height:100vh; display:flex; flex-direction:column; align-items:center; justify-content:center; padding:120px 48px 80px; position:relative; overflow:hidden; background:var(--white); }
+.hero-mesh { position:absolute; inset:0; pointer-events:none; background: radial-gradient(ellipse 900px 520px at 50% 0%, rgba(0,98,245,.065) 0%, transparent 70%), radial-gradient(ellipse 360px 360px at 10% 68%, rgba(0,98,245,.04) 0%, transparent 60%), radial-gradient(ellipse 300px 300px at 90% 72%, rgba(0,98,245,.03) 0%, transparent 60%); }
+.hero-lines { position:absolute; inset:0; pointer-events:none; background-image:linear-gradient(var(--stroke) 1px, transparent 1px); background-size:100% 80px; mask-image:radial-gradient(ellipse 80% 80% at 50% 0%, black 0%, transparent 100%); opacity:.55; }
+.hero-inner { position:relative; z-index:1; max-width:860px; width:100%; text-align:center; }
+.hero-pill { display:inline-flex; align-items:center; gap:8px; background:var(--blue-pale); border:1px solid var(--stroke-b); border-radius:100px; padding:5px 14px 5px 5px; font-size:.74rem; font-weight:500; color:var(--blue); margin-bottom:36px; letter-spacing:.01em; animation:up .7s cubic-bezier(.22,.68,0,1.2) both; }
+.pill-tag { background:var(--blue); color:white; font-size:.67rem; font-weight:700; letter-spacing:.07em; text-transform:uppercase; padding:3px 10px; border-radius:100px; }
+h1.hero-h { font-family:'Instrument Serif',Georgia,serif; font-size:clamp(3rem,7vw,6.6rem); line-height:1.01; letter-spacing:-.025em; color:var(--ink); font-weight:400; margin-bottom:26px; animation:up .8s .08s cubic-bezier(.22,.68,0,1.2) both; }
+h1.hero-h em { font-style:italic; color:var(--blue); }
+.hero-p { font-size:clamp(.9rem,1.5vw,1.06rem); color:var(--ink-60); line-height:1.75; font-weight:300; max-width:540px; margin:0 auto 46px; animation:up .8s .16s cubic-bezier(.22,.68,0,1.2) both; }
+.hero-btns { display:flex; gap:12px; justify-content:center; flex-wrap:wrap; animation:up .8s .24s cubic-bezier(.22,.68,0,1.2) both; }
+.btn-blue { display:inline-flex; align-items:center; gap:8px; background:var(--blue); color:white; font-size:.88rem; font-weight:600; text-decoration:none; padding:13px 28px; border-radius:100px; transition:all .25s; box-shadow:0 4px 20px rgba(0,98,245,.28); }
+.btn-blue:hover { background:var(--blue-l); transform:translateY(-2px); box-shadow:0 8px 28px rgba(0,98,245,.35); }
+.btn-outline { display:inline-flex; align-items:center; gap:8px; background:white; color:var(--ink); font-size:.88rem; font-weight:500; text-decoration:none; padding:13px 28px; border-radius:100px; border:1.5px solid var(--stroke); transition:all .25s; }
+.btn-outline:hover { border-color:var(--ink-30); transform:translateY(-2px); box-shadow:0 4px 14px rgba(0,0,0,.06); }
+
+/* ── HERO MOCKUP ── */
+.hero-vis { margin-top:68px; max-width:920px; width:100%; animation:up .9s .36s cubic-bezier(.22,.68,0,1.2) both; }
+.screen { background:var(--off); border:1px solid var(--stroke); border-radius:18px; overflow:hidden; aspect-ratio:16/9; box-shadow:0 2px 4px rgba(0,0,0,.04), 0 8px 28px rgba(0,0,0,.07), 0 32px 72px rgba(0,0,0,.06); }
+.sc-bar { background:white; border-bottom:1px solid var(--stroke); height:38px; display:flex; align-items:center; padding:0 14px; gap:7px; }
+.dot { width:9px; height:9px; border-radius:50%; }
+.dt-r{background:#ff5f57;} .dt-y{background:#febc2e;} .dt-g{background:#28c840;}
+.sc-url { flex:1; background:var(--off); border-radius:5px; height:22px; margin:0 16px; display:flex; align-items:center; padding:0 10px; font-size:.67rem; color:var(--ink-30); border:1px solid var(--stroke); }
+.sc-body { display:grid; grid-template-columns:178px 1fr; height:calc(100% - 38px); }
+.sc-side { background:white; border-right:1px solid var(--stroke); padding:16px 10px; display:flex; flex-direction:column; gap:2px; }
+.si { padding:6px 9px; border-radius:6px; font-size:.67rem; font-weight:500; color:var(--ink-30); display:flex; align-items:center; gap:7px; cursor:default; }
+.si.act { background:var(--blue-pale); color:var(--blue); }
+.si-dot { width:5px; height:5px; border-radius:50%; background:currentColor; }
+.sc-main { padding:18px; display:flex; flex-direction:column; gap:11px; overflow:hidden; }
+.sc-head { display:flex; align-items:center; justify-content:space-between; }
+.sc-title { font-size:.74rem; font-weight:600; color:var(--ink); }
+.sc-date { font-size:.63rem; color:var(--ink-30); }
+.m-row { display:flex; gap:9px; }
+.m-card { flex:1; background:white; border:1px solid var(--stroke); border-radius:9px; padding:10px 12px; }
+.m-v { font-size:.98rem; font-weight:600; color:var(--ink); line-height:1; }
+.m-l { font-size:.59rem; color:var(--ink-30); margin-top:3px; font-weight:500; letter-spacing:.02em; }
+.m-t { font-size:.59rem; font-weight:600; margin-top:3px; }
+.m-t.up{color:#16a34a;} .m-t.dn{color:#dc2626;}
+.sc-chart { background:white; border:1px solid var(--stroke); border-radius:9px; padding:10px; display:flex; align-items:flex-end; gap:3px; flex:1; }
+.cb { flex:1; background:var(--blue-pale); border-radius:2px 2px 0 0; transition:height .6s ease; }
+.cb.hi { background:var(--blue); }
+.sc-bot { display:grid; grid-template-columns:1fr 1fr; gap:9px; }
+.mini-table { background:white; border:1px solid var(--stroke); border-radius:9px; padding:10px 12px; }
+.mt-head { font-size:.62rem; font-weight:600; color:var(--ink-60); letter-spacing:.04em; text-transform:uppercase; margin-bottom:7px; }
+.mt-row { display:flex; justify-content:space-between; align-items:center; padding:4px 0; border-bottom:1px solid var(--stroke); }
+.mt-row:last-child { border-bottom:none; }
+.mt-name { font-size:.63rem; color:var(--ink); font-weight:500; }
+.mt-val { font-size:.63rem; color:var(--ink-60); }
+.mt-badge { font-size:.57rem; font-weight:600; padding:1px 6px; border-radius:4px; }
+.mt-ok{background:#dcfce7;color:#16a34a;} .mt-warn{background:#fef9c3;color:#a16207;} .mt-info{background:var(--blue-pale);color:var(--blue);}
+
+/* ── LOGOS ── */
+#logos { padding:40px 48px; border-top:1px solid var(--stroke); border-bottom:1px solid var(--stroke); }
+.logos-lbl { text-align:center; font-size:.7rem; font-weight:500; color:var(--ink-30); letter-spacing:.1em; text-transform:uppercase; margin-bottom:26px; }
+.logos-wrap { overflow:hidden; }
+.logos-tr { display:flex; gap:54px; align-items:center; width:max-content; animation:ticker 24s linear infinite; }
+.logos-tr:hover { animation-play-state:paused; }
+@keyframes ticker { from{transform:translateX(0)} to{transform:translateX(-50%)} }
+.litem { font-weight:600; font-size:.86rem; color:var(--ink-30); white-space:nowrap; transition:color .2s; cursor:default; letter-spacing:-.01em; }
+.litem:hover { color:var(--ink-60); }
+
+/* ── SHARED ── */
+.wrap { padding:96px 48px; }
+.wrap.alt { background:var(--off); }
+.wrap.dk { background:var(--ink); }
+.cont { max-width:1100px; margin:0 auto; }
+.eyebrow { display:inline-flex; align-items:center; gap:8px; font-size:.7rem; font-weight:600; letter-spacing:.12em; text-transform:uppercase; color:var(--blue); margin-bottom:14px; }
+.eyebrow::before { content:''; width:18px; height:1.5px; background:var(--blue); }
+h2.st { font-family:'Instrument Serif',Georgia,serif; font-size:clamp(2rem,4.2vw,3.4rem); line-height:1.07; letter-spacing:-.025em; font-weight:400; color:var(--ink); margin-bottom:14px; }
+h2.st em { font-style:italic; color:var(--blue); }
+h2.st.lgt { color:white; }
+.sub { font-size:.93rem; color:var(--ink-60); line-height:1.72; font-weight:300; max-width:480px; }
+.sub.lgt { color:rgba(255,255,255,.45); }
+
+/* ── PRODUCTS GRID ── */
+.prod-grid { display:grid; grid-template-columns:1fr 1fr; gap:1px; background:var(--stroke); border:1px solid var(--stroke); border-radius:14px; overflow:hidden; margin-top:60px; }
+.pc { background:var(--white); padding:44px 40px; position:relative; overflow:hidden; transition:background .3s; cursor:default; }
+.pc::before { content:''; position:absolute; top:0; left:0; width:3px; height:0; background:var(--blue); transition:height .35s ease; }
+.pc:hover { background:var(--blue-pale2); }
+.pc:hover::before { height:100%; }
+.pc.dk { background:var(--ink); }
+.pc.dk:hover { background:#0d1828; }
+.pc.dk::before { background:#6ba3ff; }
+.pc.span2 { grid-column:span 2; }
+.pc-num { font-family:'Instrument Serif',serif; font-size:2.4rem; font-weight:400; color:var(--ink-10); line-height:1; margin-bottom:20px; transition:color .3s; }
+.pc:hover .pc-num { color:rgba(0,98,245,.1); }
+.pc.dk .pc-num { color:rgba(255,255,255,.05); }
+.pc-ico { width:44px; height:44px; border-radius:10px; background:var(--blue-pale); border:1px solid var(--stroke-b); display:flex; align-items:center; justify-content:center; font-size:1.1rem; margin-bottom:18px; transition:transform .3s; }
+.pc:hover .pc-ico { transform:scale(1.07) rotate(4deg); }
+.pc.dk .pc-ico { background:rgba(0,98,245,.15); border-color:rgba(0,98,245,.3); }
+.pc-title { font-size:1.04rem; font-weight:600; letter-spacing:-.02em; color:var(--ink); margin-bottom:9px; }
+.pc.dk .pc-title { color:white; }
+.pc-desc { font-size:.85rem; color:var(--ink-60); line-height:1.67; font-weight:300; }
+.pc.dk .pc-desc { color:rgba(255,255,255,.42); }
+.pc-tags { display:flex; flex-wrap:wrap; gap:6px; margin-top:18px; }
+.ptag { font-size:.68rem; font-weight:500; color:var(--blue); background:var(--blue-pale); border:1px solid var(--stroke-b); padding:3px 10px; border-radius:100px; }
+.pc.dk .ptag { background:rgba(0,98,245,.15); border-color:rgba(0,98,245,.3); color:#8db8ff; }
+
+/* ── NUMBERS ── */
+.num-grid { display:grid; grid-template-columns:repeat(4,1fr); gap:1px; background:var(--stroke); border:1px solid var(--stroke); border-radius:14px; overflow:hidden; margin-top:60px; }
+.nc { background:var(--white); padding:44px 28px; transition:background .3s; }
+.nc:hover { background:var(--blue-pale2); }
+.nbig { font-family:'Instrument Serif',serif; font-size:3.2rem; line-height:1; letter-spacing:-.03em; color:var(--blue); font-weight:400; margin-bottom:8px; }
+.nlbl { font-size:.8rem; color:var(--ink-60); font-weight:300; line-height:1.5; }
+
+/* ── HOW ── */
+.how-grid { display:grid; grid-template-columns:1fr 1fr; gap:80px; align-items:center; }
+.steps { display:flex; flex-direction:column; margin-top:44px; }
+.sr { display:flex; gap:22px; padding:26px 0; border-bottom:1px solid var(--stroke); cursor:default; transition:all .25s; position:relative; }
+.sr:first-child { border-top:1px solid var(--stroke); }
+.sr-bar { position:absolute; left:-16px; top:0; bottom:0; width:2px; background:var(--blue); transform:scaleY(0); transform-origin:top; transition:transform .3s; }
+.sr:hover .sr-bar { transform:scaleY(1); }
+.sr:hover { padding-left:6px; }
+.sn { font-family:'Instrument Serif',serif; font-size:1.3rem; color:var(--ink-30); min-width:26px; padding-top:2px; transition:color .25s; }
+.sr:hover .sn { color:var(--blue); }
+.sh { font-size:.92rem; font-weight:600; color:var(--ink); margin-bottom:5px; letter-spacing:-.01em; }
+.sp { font-size:.83rem; color:var(--ink-60); line-height:1.63; font-weight:300; }
+.how-box { background:var(--off); border:1px solid var(--stroke); border-radius:18px; overflow:hidden; aspect-ratio:.95; }
+.how-in { padding:28px; height:100%; display:flex; flex-direction:column; gap:10px; }
+.how-title { font-size:.7rem; font-weight:600; color:var(--ink-60); letter-spacing:.06em; text-transform:uppercase; }
+/* HR visual inside how-box */
+.emp-list { display:flex; flex-direction:column; gap:7px; flex:1; overflow:hidden; }
+.emp-row { display:flex; align-items:center; gap:10px; background:white; border:1px solid var(--stroke); border-radius:9px; padding:9px 12px; transition:all .25s; }
+.emp-row:hover { border-color:var(--stroke-b); background:var(--blue-pale2); }
+.emp-av { width:28px; height:28px; border-radius:50%; background:linear-gradient(135deg,var(--blue-pale),rgba(0,98,245,.25)); display:flex; align-items:center; justify-content:center; font-size:.65rem; font-weight:700; color:var(--blue); flex-shrink:0; }
+.emp-name { font-size:.72rem; font-weight:600; color:var(--ink); flex:1; }
+.emp-role { font-size:.65rem; color:var(--ink-30); }
+.emp-status { font-size:.6rem; font-weight:600; padding:2px 7px; border-radius:4px; }
+.es-ok{background:#dcfce7;color:#16a34a;} .es-leave{background:#fef9c3;color:#a16207;} .es-away{background:var(--blue-pale);color:var(--blue);}
+.att-row { display:flex; gap:6px; }
+.att-block { flex:1; height:8px; border-radius:3px; background:var(--blue); opacity:.85; }
+.att-block.off { background:var(--stroke); opacity:1; }
+.att-block.half { background:#fbbf24; opacity:.8; }
+.mini-stats { display:grid; grid-template-columns:1fr 1fr; gap:7px; }
+.ms-card { background:white; border:1px solid var(--stroke); border-radius:9px; padding:10px 12px; }
+.ms-v { font-size:1rem; font-weight:600; color:var(--ink); }
+.ms-l { font-size:.62rem; color:var(--ink-30); margin-top:2px; }
+
+/* ── TESTI ── */
+.tgrid { display:grid; grid-template-columns:repeat(3,1fr); gap:18px; margin-top:60px; }
+.tc { background:var(--white); border:1px solid var(--stroke); border-radius:14px; padding:30px 26px; transition:all .3s; }
+.tc:hover { border-color:rgba(0,98,245,.2); transform:translateY(-4px); box-shadow:0 12px 36px rgba(0,0,0,.07); }
+.tc.big { grid-column:span 2; background:var(--blue); border-color:var(--blue); }
+.tc.big:hover { transform:translateY(-4px); box-shadow:0 12px 36px rgba(0,98,245,.25); }
+.tq { font-family:'Instrument Serif',serif; font-size:1rem; line-height:1.68; color:var(--ink); font-weight:400; margin-bottom:26px; }
+.tc.big .tq { color:white; font-size:1.15rem; }
+.tau { display:flex; align-items:center; gap:10px; }
+.tav { width:36px; height:36px; border-radius:50%; background:linear-gradient(135deg,var(--blue-pale),rgba(0,98,245,.3)); display:flex; align-items:center; justify-content:center; font-size:.74rem; font-weight:700; color:var(--blue); flex-shrink:0; }
+.tc.big .tav { background:rgba(255,255,255,.2); color:white; }
+.tan { font-size:.8rem; font-weight:600; color:var(--ink); }
+.tc.big .tan { color:white; }
+.tar { font-size:.72rem; color:var(--ink-30); }
+.tc.big .tar { color:rgba(255,255,255,.55); }
+.tstars { margin-bottom:14px; font-size:.72rem; color:var(--blue); letter-spacing:2px; }
+.tc.big .tstars { color:rgba(255,255,255,.55); }
+
+/* ── INDUSTRIES ── */
+.ind-grid { display:grid; grid-template-columns:repeat(3,1fr); gap:16px; margin-top:56px; }
+.ind-card { border:1px solid var(--stroke); border-radius:12px; padding:28px 24px; background:var(--white); transition:all .3s; cursor:default; }
+.ind-card:hover { border-color:rgba(0,98,245,.25); background:var(--blue-pale2); transform:translateY(-3px); box-shadow:0 8px 28px rgba(0,0,0,.06); }
+.ind-ico { font-size:1.6rem; margin-bottom:14px; }
+.ind-title { font-size:.95rem; font-weight:600; color:var(--ink); margin-bottom:7px; letter-spacing:-.01em; }
+.ind-desc { font-size:.82rem; color:var(--ink-60); line-height:1.6; font-weight:300; }
+
+/* ── PRICING ── */
+.pgrid { display:grid; grid-template-columns:repeat(3,1fr); gap:18px; margin-top:60px; }
+.pcard { background:var(--white); border:1px solid var(--stroke); border-radius:14px; padding:34px 30px; position:relative; transition:all .3s; }
+.pcard:hover { transform:translateY(-4px); box-shadow:0 12px 36px rgba(0,0,0,.07); }
+.pcard.pop { background:var(--ink); border-color:var(--ink); }
+.pop-tag { position:absolute; top:-12px; left:50%; transform:translateX(-50%); background:var(--blue); color:white; font-size:.67rem; font-weight:700; letter-spacing:.07em; text-transform:uppercase; padding:4px 14px; border-radius:100px; }
+.pname { font-size:.78rem; font-weight:600; letter-spacing:.07em; text-transform:uppercase; color:var(--ink-60); margin-bottom:22px; }
+.pcard.pop .pname { color:rgba(255,255,255,.45); }
+.pamount { font-family:'Instrument Serif',serif; font-size:3rem; font-weight:400; letter-spacing:-.03em; color:var(--ink); line-height:1; margin-bottom:4px; }
+.pcard.pop .pamount { color:white; }
+.pamount sup { font-size:1.2rem; vertical-align:top; margin-top:7px; display:inline-block; }
+.pper { font-size:.75rem; color:var(--ink-30); margin-bottom:28px; }
+.pcard.pop .pper { color:rgba(255,255,255,.35); }
+.pdiv { height:1px; background:var(--stroke); margin-bottom:22px; }
+.pcard.pop .pdiv { background:rgba(255,255,255,.1); }
+.pfeats { list-style:none; display:flex; flex-direction:column; gap:10px; margin-bottom:28px; }
+.pfeats li { font-size:.82rem; color:var(--ink-60); display:flex; align-items:flex-start; gap:9px; font-weight:300; line-height:1.45; }
+.pcard.pop .pfeats li { color:rgba(255,255,255,.5); }
+.pfeats li::before { content:'✓'; color:var(--blue); font-weight:700; font-size:.8rem; flex-shrink:0; margin-top:1px; }
+.pcard.pop .pfeats li::before { color:#8db8ff; }
+.pbtn { display:block; text-align:center; padding:11px 18px; border-radius:100px; font-size:.82rem; font-weight:600; text-decoration:none; transition:all .25s; }
+.pbtn-outline { border:1.5px solid var(--stroke); color:var(--ink); }
+.pbtn-outline:hover { border-color:var(--ink-30); background:var(--off); }
+.pbtn-white { background:white; color:var(--ink); }
+.pbtn-white:hover { background:rgba(255,255,255,.92); transform:scale(1.02); }
+
+/* ── CTA ── */
+#cta { padding:96px 48px; background:var(--ink); position:relative; overflow:hidden; }
+.cta-glow { position:absolute; width:700px; height:500px; background:radial-gradient(ellipse,rgba(0,98,245,.16),transparent); left:50%; top:50%; transform:translate(-50%,-50%); pointer-events:none; }
+.cta-inner { position:relative; z-index:1; max-width:640px; margin:0 auto; text-align:center; }
+.cta-h { font-family:'Instrument Serif',serif; font-size:clamp(2.4rem,5vw,3.9rem); font-weight:400; line-height:1.06; letter-spacing:-.025em; color:white; margin-bottom:18px; }
+.cta-h em { font-style:italic; color:#6ba3ff; }
+.cta-p { font-size:.91rem; color:rgba(255,255,255,.4); line-height:1.72; font-weight:300; margin-bottom:36px; }
+.cta-form { display:flex; gap:10px; max-width:420px; margin:0 auto 14px; }
+.cta-inp { flex:1; background:rgba(255,255,255,.07); border:1px solid rgba(255,255,255,.12); border-radius:100px; padding:12px 20px; color:white; font-size:.86rem; font-family:'Geist',sans-serif; outline:none; transition:all .25s; }
+.cta-inp:focus { background:rgba(255,255,255,.1); border-color:rgba(0,98,245,.55); }
+.cta-inp::placeholder { color:rgba(255,255,255,.27); }
+.cta-sbtn { background:var(--blue); color:white; padding:12px 22px; border-radius:100px; border:none; font-size:.86rem; font-weight:600; cursor:pointer; font-family:'Geist',sans-serif; white-space:nowrap; transition:all .25s; box-shadow:0 4px 18px rgba(0,98,245,.32); }
+.cta-sbtn:hover { background:var(--blue-l); transform:translateY(-2px); box-shadow:0 6px 24px rgba(0,98,245,.4); }
+.cta-note { font-size:.72rem; color:rgba(255,255,255,.22); }
+
+/* ── FOOTER ── */
+footer { background:var(--ink); border-top:1px solid rgba(255,255,255,.07); padding:56px 48px 32px; }
+.fgrid { display:grid; grid-template-columns:2fr 1fr 1fr 1fr; gap:44px; max-width:1100px; margin:0 auto 44px; padding-bottom:44px; border-bottom:1px solid rgba(255,255,255,.07); }
+.fb p { font-size:.8rem; color:rgba(255,255,255,.28); line-height:1.6; font-weight:300; max-width:220px; margin-top:10px; }
+.fb .logo-mark { color:white; }
+.fcol h5 { font-size:.7rem; font-weight:600; letter-spacing:.09em; text-transform:uppercase; color:rgba(255,255,255,.35); margin-bottom:14px; }
+.fcol ul { list-style:none; display:flex; flex-direction:column; gap:9px; }
+.fcol a { font-size:.8rem; color:rgba(255,255,255,.32); text-decoration:none; transition:color .2s; font-weight:300; }
+.fcol a:hover { color:rgba(255,255,255,.72); }
+.fbot { max-width:1100px; margin:0 auto; display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:10px; }
+.fcopy { font-size:.74rem; color:rgba(255,255,255,.18); }
+.flinks { display:flex; gap:18px; }
+.flinks a { font-size:.74rem; color:rgba(255,255,255,.18); text-decoration:none; transition:color .2s; }
+.flinks a:hover { color:rgba(255,255,255,.5); }
+
+/* TECH PILLS */
+.tech-pill { display:inline-flex; align-items:center; gap:5px; font-size:.78rem; font-weight:500; color:var(--ink); background:var(--off); border:1px solid var(--stroke); border-radius:100px; padding:5px 13px; transition:all .2s; cursor:default; }
+.tech-pill:hover { background:var(--blue-pale); border-color:var(--stroke-b); color:var(--blue); }
+.tech-pill-dk { display:inline-flex; align-items:center; gap:5px; font-size:.78rem; font-weight:500; color:rgba(255,255,255,.65); background:rgba(255,255,255,.07); border:1px solid rgba(255,255,255,.12); border-radius:100px; padding:5px 13px; transition:all .2s; cursor:default; }
+.tech-pill-dk:hover { background:rgba(0,98,245,.25); border-color:rgba(100,163,255,.3); color:white; }
+
+/* ── REVEAL ── */
+.r { opacity:0; transform:translateY(22px); transition:opacity .72s cubic-bezier(.22,.68,0,1.2), transform .72s cubic-bezier(.22,.68,0,1.2); }
+.r.on { opacity:1; transform:none; }
+.r.d1{transition-delay:.08s;} .r.d2{transition-delay:.16s;} .r.d3{transition-delay:.24s;}
+
+@keyframes up { from{opacity:0;transform:translateY(18px)} to{opacity:1;transform:none} }
+
+/* ── RESPONSIVE ── */
+@media(max-width:940px){
+  .nav-c,.nav-ghost{display:none;}
+  nav{padding:0 20px;}
+  .wrap{padding:70px 20px;}
+  #hero{padding:96px 20px 60px;}
+  #logos{padding:34px 20px;}
+  .prod-grid,.how-grid{grid-template-columns:1fr;}
+  .pc.span2{grid-column:span 1;}
+  .how-box{display:none;}
+  .num-grid{grid-template-columns:1fr 1fr;}
+  .tgrid{grid-template-columns:1fr;}
+  .tc.big{grid-column:span 1;}
+  .ind-grid{grid-template-columns:1fr 1fr;}
+  .pgrid{grid-template-columns:1fr;max-width:380px;margin-left:auto;margin-right:auto;}
+  .how-grid[style]{gap:32px!important;}
+  #contact .how-grid{grid-template-columns:1fr;}
+  .fgrid{grid-template-columns:1fr 1fr;}
+  .cta-form{flex-direction:column;}
+  .sc-side{display:none;}
+  .sc-body{grid-template-columns:1fr;}
+  .sc-bot{grid-template-columns:1fr;}
+}
+@media(max-width:600px){
+  .ind-grid{grid-template-columns:1fr;}
+  .num-grid{grid-template-columns:1fr;}
+  h1.hero-h{font-size:3rem;}
+}
+</style>
 </head>
-<body class="bg-gray-900 text-white overflow-x-hidden">
-    <!-- Floating Particles -->
-    <div class="fixed inset-0 pointer-events-none z-0">
-        <div class="particle" style="left: 10%; animation-delay: 0s;"></div>
-        <div class="particle" style="left: 20%; animation-delay: 1s;"></div>
-        <div class="particle" style="left: 30%; animation-delay: 2s;"></div>
-        <div class="particle" style="left: 40%; animation-delay: 3s;"></div>
-        <div class="particle" style="left: 50%; animation-delay: 4s;"></div>
-        <div class="particle" style="left: 60%; animation-delay: 5s;"></div>
-        <div class="particle" style="left: 70%; animation-delay: 6s;"></div>
-        <div class="particle" style="left: 80%; animation-delay: 7s;"></div>
-        <div class="particle" style="left: 90%; animation-delay: 8s;"></div>
-    </div>
+<body>
 
-    <!-- Navigation -->
-    <nav class="fixed top-0 w-full z-50 glass-effect">
-        <div class="max-w-7xl mx-auto px-6 py-4">
-            <div class="flex justify-between items-center">
-                <div class="text-3xl font-bold gradient-text">
-                    <span class="bg-gradient-to-r from-blue-400 to-purple-500 bg-clip-text text-transparent">amectar.</span>
-                </div>
-                <div class="hidden md:flex space-x-8">
-                    <a href="#home" class="hover:text-blue-400 transition-colors">Home</a>
-                    <a href="#services" class="hover:text-blue-400 transition-colors">Services</a>
-                    <a href="#portfolio" class="hover:text-blue-400 transition-colors">Portfolio</a>
-                    <a href="#team" class="hover:text-blue-400 transition-colors">Team</a>
-                    <a href="#contact" class="hover:text-blue-400 transition-colors">Contact</a>
-                </div>
-                <button class="md:hidden text-white">
-                    <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path>
-                    </svg>
-                </button>
-            </div>
-        </div>
-    </nav>
+<div id="cur"></div>
+<div id="cur-o"></div>
 
-    <section id="home" class="min-h-screen flex items-center justify-center relative overflow-hidden">
+<!-- NAV -->
+<nav id="nav">
+  <a class="logo-mark" href="#">
+    <div class="logo-ico"></div>
+    Amectar
+  </a>
+  <div class="nav-c">
+    <a href="#products">Our Software</a>
+    <a href="#how">How We Work</a>
+    <a href="#industries">Industries</a>
+    <a href="#testimonials">Clients</a>
+    <a href="#tech">Technology</a>
+  </div>
+  <div class="nav-r">
+    <a href="#" class="nav-ghost">Client login</a>
+    <a href="#cta" class="nav-btn">Get a free demo →</a>
+  </div>
+</nav>
 
-  <!-- 🔵 Background Video -->
-  <video autoplay muted loop playsinline class="absolute inset-0 w-full h-full object-cover z-0">
-    <source src="videos/hero.mp4" type="video/mp4" />
-    Your browser does not support HTML5 video.
-  </video>
-
-  <!-- 🔷 Blue Overlay -->
-  <div class="absolute inset-0 bg-blue-900 bg-opacity-40 z-10"></div>
-
-  <!-- ✨ Hero Content -->
-  <div class="max-w-7xl w-full px-4 sm:px-6 md:px-10 text-center z-20">
-    <div class="fade-in-up py-16 sm:py-20 md:py-28">
-      <h1 class="text-5xl sm:text-5xl md:text-6xl lg:text-7xl font-bold mb-6 leading-tight">
-        We Craft
-        <span class="block bg-gradient-to-r from-yellow-400 to-pink-500 bg-clip-text text-transparent">
-          Digital Dreams
-        </span>
-      </h1>
-      <p class="text-base sm:text-lg md:text-xl lg:text-2xl mb-6 text-gray-200 max-w-3xl mx-auto">
-        Transforming innovative ideas into powerful software solutions that drive businesses forward in the digital age.
-      </p>
-      <div class="text-sm sm:text-base md:text-lg text-blue-300 mb-8 font-mono">
-        const success = innovation + dedication + code;
-      </div>
-      <div class="flex flex-col sm:flex-row gap-4 justify-center items-center sm:items-start">
-        <button class="bg-white text-gray-900 px-6 sm:px-8 py-3 sm:py-4 rounded-full font-semibold hover-scale glow-effect transition-all">
-          Start Your Project
-        </button>
-        <button class="border-2 border-white px-6 sm:px-8 py-3 sm:py-4 rounded-full font-semibold hover:bg-white hover:text-gray-900 transition-all">
-          View Our Work
-        </button>
-      </div>
+<!-- HERO -->
+<section id="hero">
+  <div class="hero-mesh"></div>
+  <div class="hero-lines"></div>
+  <div class="hero-inner">
+    <div class="hero-pill"><span class="pill-tag">New</span> HR Management v3.0 — now with payroll automation</div>
+    <h1 class="hero-h">Business software<br>built for <em>real teams</em></h1>
+    <p class="hero-p">Amectar develops tailored HR management, stock & inventory, POS, and web systems that help Sri Lankan businesses run smarter, faster, and with complete visibility.</p>
+    <div class="hero-btns">
+      <a href="#cta" class="btn-blue">Book a free demo →</a>
+      <a href="#products" class="btn-outline">Explore our systems</a>
     </div>
   </div>
-
-  <!-- Floating Elements -->
-  <div class="absolute top-10 left-4 sm:top-20 sm:left-10 floating-animation">
-    <div class="w-12 sm:w-20 h-12 sm:h-20 bg-blue-500 rounded-lg opacity-20"></div>
-  </div>
-  <div class="absolute bottom-10 right-4 sm:bottom-20 sm:right-10 floating-animation" style="animation-delay: 2s;">
-    <div class="w-10 sm:w-16 h-10 sm:h-16 bg-purple-500 rounded-full opacity-20"></div>
-  </div>
-  <div class="absolute top-1/2 left-6 sm:left-20 floating-animation" style="animation-delay: 4s;">
-    <div class="w-8 sm:w-12 h-8 sm:h-12 bg-pink-500 rounded-lg opacity-20 rotate-45"></div>
-  </div>
-
-</section>
-
-
-    <!-- Services Section -->
-    <section id="services" class="py-20 bg-gray-800">
-        <div class="max-w-7xl mx-auto px-6">
-            <div class="text-center mb-16 fade-in-up">
-                <h2 class="text-5xl font-bold mb-6">Our Expertise</h2>
-                <p class="text-xl text-gray-300 max-w-3xl mx-auto">
-                    We specialize in cutting-edge technologies to deliver exceptional digital experiences
-                </p>
-            </div>
-            
-            <div class="grid md:grid-cols-3 gap-8">
-                <div class="glass-effect p-8 rounded-2xl hover-scale fade-in-up">
-                    <div class="text-4xl mb-4">🚀</div>
-                    <h3 class="text-2xl font-bold mb-4">Web Development</h3>
-                    <p class="text-gray-300 mb-6">
-                        Modern, responsive websites and web applications built with the latest technologies and frameworks.
-                    </p>
-                    <ul class="text-sm text-blue-300 space-y-2">
-                        <li>• React & Next.js</li>
-                        <li>• Node.js & Express</li>
-                        <li>• Progressive Web Apps</li>
-                    </ul>
-                </div>
-                
-                <div class="glass-effect p-8 rounded-2xl hover-scale fade-in-up" style="animation-delay: 0.2s;">
-                    <div class="text-4xl mb-4">📱</div>
-                    <h3 class="text-2xl font-bold mb-4">Mobile Apps</h3>
-                    <p class="text-gray-300 mb-6">
-                        Native and cross-platform mobile applications that provide seamless user experiences.
-                    </p>
-                    <ul class="text-sm text-blue-300 space-y-2">
-                        <li>• React Native</li>
-                        <li>• Flutter</li>
-                        <li>• iOS & Android</li>
-                    </ul>
-                </div>
-                
-                <div class="glass-effect p-8 rounded-2xl hover-scale fade-in-up" style="animation-delay: 0.4s;">
-                    <div class="text-4xl mb-4">☁️</div>
-                    <h3 class="text-2xl font-bold mb-4">Cloud Solutions</h3>
-                    <p class="text-gray-300 mb-6">
-                        Scalable cloud infrastructure and DevOps solutions for modern applications.
-                    </p>
-                    <ul class="text-sm text-blue-300 space-y-2">
-                        <li>• AWS & Azure</li>
-                        <li>• Docker & Kubernetes</li>
-                        <li>• CI/CD Pipelines</li>
-                    </ul>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Portfolio Section -->
-    <section id="portfolio" class="py-20 bg-gray-900">
-        <div class="max-w-7xl mx-auto px-6">
-            <div class="text-center mb-16 fade-in-up">
-                <h2 class="text-5xl font-bold mb-6">Success Stories</h2>
-                <p class="text-xl text-gray-300">
-                    Discover how we've helped businesses transform their digital presence
-                </p>
-            </div>
-            
-            <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
-                <div class="bg-gradient-to-br from-blue-600 to-purple-700 p-8 rounded-2xl hover-scale fade-in-up glow-effect">
-                    <h3 class="text-2xl font-bold mb-4">FinTech Revolution</h3>
-                    <p class="text-gray-200 mb-6">
-                        Built a comprehensive financial platform serving 100K+ users with real-time transactions and AI-powered insights.
-                    </p>
-                    <div class="flex justify-between items-center">
-                        <span class="text-sm text-blue-200">React • Node.js • AWS</span>
-                        <span class="text-2xl">📈</span>
-                    </div>
-                </div>
-                
-                <div class="bg-gradient-to-br from-green-600 to-teal-700 p-8 rounded-2xl hover-scale fade-in-up glow-effect" style="animation-delay: 0.2s;">
-                    <h3 class="text-2xl font-bold mb-4">E-Commerce Giant</h3>
-                    <p class="text-gray-200 mb-6">
-                        Developed a scalable marketplace handling millions of products with advanced search and recommendation systems.
-                    </p>
-                    <div class="flex justify-between items-center">
-                        <span class="text-sm text-green-200">Next.js • MongoDB • Stripe</span>
-                        <span class="text-2xl">🛒</span>
-                    </div>
-                </div>
-                
-                <div class="bg-gradient-to-br from-pink-600 to-red-700 p-8 rounded-2xl hover-scale fade-in-up glow-effect" style="animation-delay: 0.4s;">
-                    <h3 class="text-2xl font-bold mb-4">Healthcare Innovation</h3>
-                    <p class="text-gray-200 mb-6">
-                        Created a telemedicine platform connecting patients with doctors, featuring secure video calls and health tracking.
-                    </p>
-                    <div class="flex justify-between items-center">
-                        <span class="text-sm text-pink-200">React Native • WebRTC • HIPAA</span>
-                        <span class="text-2xl">🏥</span>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-   <!-- Team Section -->
-<section id="team" class="relative py-24 bg-gray-900 overflow-hidden">
-  <div class="absolute inset-0 bg-gradient-to-br from-blue-800/20 to-purple-800/10 pointer-events-none"></div>
-
-  <div class="max-w-7xl mx-auto px-6 relative z-10">
-    <div class="text-center mb-16 fade-in-up">
-      <h2 class="text-5xl font-extrabold mb-4 bg-gradient-to-r from-cyan-400 via-blue-500 to-purple-500 bg-clip-text text-transparent">
-        Meet the Visionaries
-      </h2>
-      <p class="text-xl text-gray-300">The brilliant minds powering amectar's success</p>
-    </div>
-
-    <div class="grid sm:grid-cols-2 lg:grid-cols-4 gap-10">
-      <!-- Member -->
-      <div class="group relative p-6 bg-gray-800 rounded-3xl shadow-xl transform hover:scale-105 transition-all duration-500 hover:shadow-blue-500/40 fade-in-up">
-        <div class="w-32 h-32 mx-auto mb-4 rounded-full overflow-hidden border-4 border-gradient-to-br from-blue-400 to-purple-500 shadow-lg">
-          <img src="https://media.licdn.com/dms/image/v2/D5603AQGqibEjIT1vhg/profile-displayphoto-scale_400_400/B56ZflXLnQHEAk-/0/1751899752829?e=1756944000&v=beta&t=bTinU_TdzlGAdz5mFcP80Un59hg_TUxno_UE7l16_PI" alt="Alex Chen" class="w-full h-full object-cover">
-        </div>
-        <h3 class="text-xl font-bold text-white text-center">Aman Manthira</h3>
-        <p class="text-blue-400 text-sm mb-2 text-center">Software Engineer / Founder</p>
-        <p class="text-gray-400 text-sm text-center">Full-stack wizard crafting scalable solutions</p>
+  <div class="hero-vis">
+    <div class="screen">
+      <div class="sc-bar">
+        <div class="dot dt-r"></div><div class="dot dt-y"></div><div class="dot dt-g"></div>
+        <div class="sc-url">amectar.lk/dashboard — HR Management System</div>
       </div>
-
-      <!-- Member -->
-      <div class="group relative p-6 bg-gray-800 rounded-3xl shadow-xl transform hover:scale-105 transition-all duration-500 hover:shadow-green-500/40 fade-in-up">
-        <div class="w-32 h-32 mx-auto mb-4 rounded-full overflow-hidden border-4 border-gradient-to-br from-green-400 to-teal-500 shadow-lg">
-          <img src="https://randomuser.me/api/portraits/women/44.jpg" alt="Sarah Kim" class="w-full h-full object-cover">
+      <div class="sc-body">
+        <div class="sc-side">
+          <div class="si act"><div class="si-dot"></div>Dashboard</div>
+          <div class="si"><div class="si-dot"></div>Employees</div>
+          <div class="si"><div class="si-dot"></div>Attendance</div>
+          <div class="si"><div class="si-dot"></div>Payroll</div>
+          <div class="si"><div class="si-dot"></div>Leave</div>
+          <div class="si"><div class="si-dot"></div>Reports</div>
         </div>
-        <h3 class="text-xl font-bold text-white text-center">Sarah Kim</h3>
-        <p class="text-green-400 text-sm mb-2 text-center">UX/UI Designer</p>
-        <p class="text-gray-400 text-sm text-center">Design thinking expert creating intuitive user experiences</p>
-      </div>
-
-      <!-- Member -->
-      <div class="group relative p-6 bg-gray-800 rounded-3xl shadow-xl transform hover:scale-105 transition-all duration-500 hover:shadow-pink-500/40 fade-in-up">
-        <div class="w-32 h-32 mx-auto mb-4 rounded-full overflow-hidden border-4 border-gradient-to-br from-pink-400 to-red-500 shadow-lg">
-          <img src="https://randomuser.me/api/portraits/men/55.jpg" alt="Mike Rodriguez" class="w-full h-full object-cover">
+        <div class="sc-main">
+          <div class="sc-head">
+            <div class="sc-title">HR Overview — December 2024</div>
+            <div class="sc-date">Last updated: just now</div>
+          </div>
+          <div class="m-row">
+            <div class="m-card"><div class="m-v">142</div><div class="m-l">Total Employees</div><div class="m-t up">↑ 4 this month</div></div>
+            <div class="m-card"><div class="m-v">96.4%</div><div class="m-l">Attendance Rate</div><div class="m-t up">↑ 1.2%</div></div>
+            <div class="m-card"><div class="m-v">8</div><div class="m-l">On Leave Today</div><div class="m-t dn">↑ 2</div></div>
+            <div class="m-card"><div class="m-v">LKR 2.4M</div><div class="m-l">Monthly Payroll</div><div class="m-t up">Processed ✓</div></div>
+          </div>
+          <div class="sc-chart">
+            <div class="cb" style="height:55%"></div><div class="cb" style="height:72%"></div>
+            <div class="cb" style="height:60%"></div><div class="cb hi" style="height:88%"></div>
+            <div class="cb" style="height:75%"></div><div class="cb" style="height:65%"></div>
+            <div class="cb hi" style="height:92%"></div><div class="cb" style="height:80%"></div>
+            <div class="cb" style="height:70%"></div><div class="cb hi" style="height:96%"></div>
+            <div class="cb" style="height:82%"></div><div class="cb" style="height:74%"></div>
+          </div>
+          <div class="sc-bot">
+            <div class="mini-table">
+              <div class="mt-head">Recent Leave Requests</div>
+              <div class="mt-row"><span class="mt-name">Kasun Perera</span><span class="mt-badge mt-ok">Approved</span></div>
+              <div class="mt-row"><span class="mt-name">Dilini Silva</span><span class="mt-badge mt-warn">Pending</span></div>
+              <div class="mt-row"><span class="mt-name">Nuwan Jayantha</span><span class="mt-badge mt-ok">Approved</span></div>
+            </div>
+            <div class="mini-table">
+              <div class="mt-head">Payroll Status</div>
+              <div class="mt-row"><span class="mt-name">December Salaries</span><span class="mt-badge mt-ok">Paid</span></div>
+              <div class="mt-row"><span class="mt-name">Bonus Processing</span><span class="mt-badge mt-info">In Progress</span></div>
+              <div class="mt-row"><span class="mt-name">EPF / ETF</span><span class="mt-badge mt-ok">Submitted</span></div>
+            </div>
+          </div>
         </div>
-        <h3 class="text-xl font-bold text-white text-center">Mike Rodriguez</h3>
-        <p class="text-pink-400 text-sm mb-2 text-center">Project Manager</p>
-        <p class="text-gray-400 text-sm text-center">Agile methodology expert ensuring timely delivery</p>
-      </div>
-
-      <!-- Member -->
-      <div class="group relative p-6 bg-gray-800 rounded-3xl shadow-xl transform hover:scale-105 transition-all duration-500 hover:shadow-yellow-500/40 fade-in-up">
-        <div class="w-32 h-32 mx-auto mb-4 rounded-full overflow-hidden border-4 border-gradient-to-br from-yellow-400 to-orange-500 shadow-lg">
-          <img src="https://randomuser.me/api/portraits/women/65.jpg" alt="Dr. Lisa Wang" class="w-full h-full object-cover">
-        </div>
-        <h3 class="text-xl font-bold text-white text-center">Dr. Lisa Wang</h3>
-        <p class="text-yellow-400 text-sm mb-2 text-center">AI Specialist</p>
-        <p class="text-gray-400 text-sm text-center">Machine learning pioneer integrating AI into applications</p>
       </div>
     </div>
   </div>
 </section>
 
-<!-- Contact Section -->
-<section id="contact" class="py-24 px-6 bg-gradient-to-br from-[#0f2027] via-[#203a43] to-[#2c5364] text-white">
-  <div class="max-w-5xl mx-auto text-center space-y-10">
-    
-    <!-- Heading -->
-    <div class="animate-fade-in-up">
-      <h2 class="text-5xl font-extrabold leading-tight tracking-tight mb-4">Let's Build the Future. Together.</h2>
-      <p class="text-xl text-gray-300 max-w-2xl mx-auto">
-        We collaborate across the globe — from New York to Tokyo, Cape Town to Antarctica 🌍❄️. 
-        Wherever you are, we're already there.
-      </p>
+<!-- LOGOS -->
+<div id="logos">
+  <div class="logos-lbl">Trusted by businesses across Sri Lanka</div>
+  <div class="logos-wrap">
+    <div class="logos-tr">
+      <div class="litem">Keells Group</div><div class="litem">Dialog Axiata</div><div class="litem">Cargills</div>
+      <div class="litem">John Keells</div><div class="litem">Arpico</div><div class="litem">MAS Holdings</div>
+      <div class="litem">Browns Group</div><div class="litem">Hayleys</div><div class="litem">Ceylon Biscuits</div><div class="litem">Softlogic</div>
+      <div class="litem">Keells Group</div><div class="litem">Dialog Axiata</div><div class="litem">Cargills</div>
+      <div class="litem">John Keells</div><div class="litem">Arpico</div><div class="litem">MAS Holdings</div>
+      <div class="litem">Browns Group</div><div class="litem">Hayleys</div><div class="litem">Ceylon Biscuits</div><div class="litem">Softlogic</div>
     </div>
+  </div>
+</div>
 
-    <!-- Glass Card Contact Info -->
-    <div class="glass-effect bg-white/5 backdrop-blur-md p-10 rounded-3xl shadow-2xl animate-slide-up">
-      <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8 text-center">
-
-        <div class="transition-transform transform hover:scale-105">
-          <div class="text-4xl mb-3">📧</div>
-          <h3 class="text-xl font-bold mb-1">Email</h3>
-          <p class="text-gray-300">helloamectar@gmail.com</p>
-        </div>
-
-        <div class="transition-transform transform hover:scale-105">
-          <div class="text-4xl mb-3">📞</div>
-          <h3 class="text-xl font-bold mb-1">Phone</h3>
-          <p class="text-gray-300">+94 (74) 1800-901</p>
-        </div>
-
-        <div class="transition-transform transform hover:scale-105">
-          <div class="text-4xl mb-3">🌐</div>
-          <h3 class="text-xl font-bold mb-1">Global Reach</h3>
-          <p class="text-gray-300">Everywhere. Even Antarctica.</p>
-        </div>
-
+<!-- PRODUCTS -->
+<section class="wrap" id="products">
+  <div class="cont">
+    <div class="r"><div class="eyebrow">Our Software</div></div>
+    <h2 class="st r">Complete business systems,<br><em>built to last</em></h2>
+    <p class="sub r">From managing your people to running your store — we build the software that keeps your business running smoothly every day.</p>
+    <div class="prod-grid">
+      <div class="pc r d1">
+        <div class="pc-num">01</div>
+        <div class="pc-ico">👥</div>
+        <div class="pc-title">HR Management System</div>
+        <p class="pc-desc">Complete human resources management — employee records, attendance tracking, payroll processing, leave management, EPF/ETF calculations, and performance reviews. Built for Sri Lankan labour law compliance.</p>
+        <div class="pc-tags"><span class="ptag">Payroll</span><span class="ptag">Attendance</span><span class="ptag">Leave</span><span class="ptag">EPF / ETF</span></div>
       </div>
-    </div>
-
-    <!-- CTA Button -->
-    <div class="animate-fade-in-up">
-      <button class="bg-white text-gray-900 px-10 py-4 rounded-full font-bold text-lg shadow-lg hover:shadow-2xl transform hover:scale-105 transition-all duration-300">
-        Start Your Project Today 🚀
-      </button>
+      <div class="pc r d2">
+        <div class="pc-num">02</div>
+        <div class="pc-ico">📦</div>
+        <div class="pc-title">Stock & Inventory Management</div>
+        <p class="pc-desc">Real-time stock tracking across multiple warehouses and branches. Purchase orders, supplier management, stock alerts, barcode scanning, stock valuation, and detailed movement history all in one place.</p>
+        <div class="pc-tags"><span class="ptag">Multi-branch</span><span class="ptag">Barcode</span><span class="ptag">Reorder Alerts</span><span class="ptag">Suppliers</span></div>
+      </div>
+      <div class="pc dk r d1">
+        <div class="pc-num">03</div>
+        <div class="pc-ico">🖥️</div>
+        <div class="pc-title">Point of Sale (POS) System</div>
+        <p class="pc-desc">Fast, reliable, and easy-to-use POS system for retail shops, restaurants, and service businesses. Handles cash & card payments, daily sales reports, customer loyalty, discounts, and receipt printing out of the box.</p>
+        <div class="pc-tags"><span class="ptag">Retail</span><span class="ptag">Restaurant</span><span class="ptag">Offline Mode</span><span class="ptag">Reports</span></div>
+      </div>
+      <div class="pc r d2">
+        <div class="pc-num">04</div>
+        <div class="pc-ico">🌐</div>
+        <div class="pc-title">Website Development</div>
+        <p class="pc-desc">Professional, fast-loading business websites and web applications. Corporate sites, e-commerce portals, booking systems, and custom web platforms tailored to your brand and business goals.</p>
+        <div class="pc-tags"><span class="ptag">Corporate</span><span class="ptag">E-commerce</span><span class="ptag">Custom Web Apps</span></div>
+      </div>
+      <div class="pc span2 r">
+        <div style="display:flex;gap:56px;flex-wrap:wrap;">
+          <div style="flex:1;min-width:200px">
+            <div class="pc-num">05</div>
+            <div class="pc-ico">📊</div>
+            <div class="pc-title">Accounting & Finance System</div>
+            <p class="pc-desc">Double-entry accounting, invoicing, expense tracking, profit & loss reports, balance sheets, and tax management built for Sri Lankan businesses. Integrates seamlessly with our HR and POS modules.</p>
+            <div class="pc-tags"><span class="ptag">Invoicing</span><span class="ptag">VAT / Tax</span><span class="ptag">P&L Reports</span></div>
+          </div>
+          <div style="flex:1;min-width:200px">
+            <div class="pc-num">06</div>
+            <div class="pc-ico">🔧</div>
+            <div class="pc-title">Custom Software Development</div>
+            <p class="pc-desc">Don't see what you need? We design and build fully custom systems from scratch — from school management platforms to clinic systems, property management, and industry-specific ERPs.</p>
+            <div class="pc-tags"><span class="ptag">ERP</span><span class="ptag">School Systems</span><span class="ptag">Clinic / Hospital</span><span class="ptag">Property</span></div>
+          </div>
+        </div>
+      </div>
     </div>
   </div>
 </section>
 
-
-   <!-- Ultra Modern Animated Footer -->
-<footer class="relative bg-gray-900 overflow-hidden text-white pt-16 pb-12 border-t border-gray-800">
-  <!-- Animated Background Dots -->
-  <div class="absolute inset-0 pointer-events-none">
-    <div class="w-full h-full animate-pulse bg-gradient-radial from-purple-600/10 via-transparent to-transparent"></div>
-    <div class="absolute top-10 left-10 w-2 h-2 bg-blue-400 rounded-full animate-bounce"></div>
-    <div class="absolute top-1/3 right-16 w-3 h-3 bg-pink-400 rounded-full animate-ping"></div>
-    <div class="absolute bottom-16 left-1/2 w-2.5 h-2.5 bg-green-400 rounded-full animate-bounce delay-500"></div>
+<!-- NUMBERS -->
+<section class="wrap alt">
+  <div class="cont">
+    <div style="text-align:center;max-width:500px;margin:0 auto" class="r">
+      <div class="eyebrow" style="justify-content:center">By the numbers</div>
+      <h2 class="st" style="text-align:center">Our work <em>speaks for itself</em></h2>
+    </div>
+    <div class="num-grid r">
+      <div class="nc"><div class="nbig">200+</div><div class="nlbl">Businesses running on Amectar software today</div></div>
+      <div class="nc"><div class="nbig">6+</div><div class="nlbl">Years delivering business software solutions in Sri Lanka</div></div>
+      <div class="nc"><div class="nbig">12</div><div class="nlbl">Ready-made software products across key business functions</div></div>
+      <div class="nc"><div class="nbig">98%</div><div class="nlbl">Client retention rate — our clients stay because our software works</div></div>
+    </div>
   </div>
+</section>
 
-  <div class="relative z-10 max-w-7xl mx-auto px-6">
-    <!-- Logo + Nav -->
-    <div class="flex flex-col md:flex-row justify-between items-center mb-10 gap-8 animate-fade-up">
-      <div class="text-3xl font-extrabold tracking-tight">
-        <span class="bg-gradient-to-r from-cyan-400 to-purple-500 bg-clip-text text-transparent">
-          amectar softwares
-        </span>
-        <p class="text-sm text-gray-400 mt-1">Crafting the future from Earth, Moon, and even Antarctica ❄️</p>
+<!-- HOW WE WORK -->
+<section class="wrap" id="how">
+  <div class="cont">
+    <div class="how-grid">
+      <div>
+        <div class="r"><div class="eyebrow">How we work</div></div>
+        <h2 class="st r">From first meeting to<br><em>go-live in weeks</em></h2>
+        <p class="sub r">We keep it simple. No jargon, no endless delays. Just a clear process that gets your new software running fast — and your team trained up and confident.</p>
+        <div class="steps">
+          <div class="sr r d1"><div class="sr-bar"></div>
+            <div class="sn">1.</div>
+            <div><div class="sh">Free discovery & needs assessment</div><p class="sp">We meet with you, understand your business processes, identify what software you need, and give you a clear proposal — completely free, no obligation.</p></div>
+          </div>
+          <div class="sr r d2"><div class="sr-bar"></div>
+            <div class="sn">2.</div>
+            <div><div class="sh">Setup, configure & customise</div><p class="sp">We configure the system to match your business exactly — your departments, your products, your workflows. No generic one-size-fits-all setup.</p></div>
+          </div>
+          <div class="sr r d3"><div class="sr-bar"></div>
+            <div class="sn">3.</div>
+            <div><div class="sh">Staff training & go-live</div><p class="sp">We train your team on-site or online until they're fully comfortable, then go live together. We stay on call for the first 30 days — no extra cost.</p></div>
+          </div>
+          <div class="sr r"><div class="sr-bar"></div>
+            <div class="sn">4.</div>
+            <div><div class="sh">Ongoing support & improvements</div><p class="sp">Your business evolves. Our software evolves with it. Dedicated support, regular updates, and new features continuously improve your system over time.</p></div>
+          </div>
+        </div>
       </div>
-      <div class="flex flex-wrap gap-6 text-lg font-medium">
-        <a href="#" class="hover:text-cyan-400 transition-all hover:scale-110 duration-300">Privacy</a>
-        <a href="#" class="hover:text-purple-400 transition-all hover:scale-110 duration-300">Terms</a>
-        <a href="#" class="hover:text-pink-400 transition-all hover:scale-110 duration-300">LinkedIn</a>
-        <a href="#" class="hover:text-blue-400 transition-all hover:scale-110 duration-300">GitHub</a>
-        <a href="#" class="hover:text-yellow-400 transition-all hover:scale-110 duration-300">Twitter</a>
+      <div class="how-box r">
+        <div class="how-in">
+          <div class="how-title">HR System — Live Preview</div>
+          <div class="emp-list">
+            <div class="emp-row"><div class="emp-av">KP</div><div style="flex:1"><div class="emp-name">Kasun Perera</div><div class="emp-role">Senior Manager · Finance</div></div><div class="emp-status es-ok">Present</div></div>
+            <div class="emp-row"><div class="emp-av">DS</div><div style="flex:1"><div class="emp-name">Dilini Silva</div><div class="emp-role">HR Executive · HRM</div></div><div class="emp-status es-ok">Present</div></div>
+            <div class="emp-row"><div class="emp-av">NJ</div><div style="flex:1"><div class="emp-name">Nuwan Jayantha</div><div class="emp-role">Warehouse Supervisor</div></div><div class="emp-status es-leave">On Leave</div></div>
+            <div class="emp-row"><div class="emp-av">RM</div><div style="flex:1"><div class="emp-name">Rashmi Mendis</div><div class="emp-role">Sales Executive</div></div><div class="emp-status es-ok">Present</div></div>
+            <div class="emp-row"><div class="emp-av">TF</div><div style="flex:1"><div class="emp-name">Tharaka Fernando</div><div class="emp-role">IT Executive</div></div><div class="emp-status es-away">Remote</div></div>
+          </div>
+          <div style="background:white;border:1px solid var(--stroke);border-radius:9px;padding:10px 12px;">
+            <div style="font-size:.62rem;font-weight:600;color:var(--ink-60);letter-spacing:.05em;text-transform:uppercase;margin-bottom:8px;">This Week's Attendance</div>
+            <div style="display:flex;flex-direction:column;gap:5px">
+              <div style="display:flex;align-items:center;gap:8px;font-size:.63rem;color:var(--ink-60)"><span style="width:20px">Mon</span><div class="att-row" style="flex:1"><div class="att-block"></div><div class="att-block"></div><div class="att-block"></div><div class="att-block off"></div><div class="att-block"></div></div></div>
+              <div style="display:flex;align-items:center;gap:8px;font-size:.63rem;color:var(--ink-60)"><span style="width:20px">Tue</span><div class="att-row" style="flex:1"><div class="att-block"></div><div class="att-block"></div><div class="att-block half"></div><div class="att-block"></div><div class="att-block"></div></div></div>
+              <div style="display:flex;align-items:center;gap:8px;font-size:.63rem;color:var(--ink-60)"><span style="width:20px">Wed</span><div class="att-row" style="flex:1"><div class="att-block"></div><div class="att-block off"></div><div class="att-block"></div><div class="att-block"></div><div class="att-block"></div></div></div>
+            </div>
+          </div>
+          <div class="mini-stats">
+            <div class="ms-card"><div class="ms-v">142</div><div class="ms-l">Active Employees</div></div>
+            <div class="ms-card"><div class="ms-v">LKR 2.4M</div><div class="ms-l">Dec Payroll</div></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- INDUSTRIES -->
+<section class="wrap alt" id="industries">
+  <div class="cont">
+    <div style="text-align:center;max-width:520px;margin:0 auto" class="r">
+      <div class="eyebrow" style="justify-content:center">Industries</div>
+      <h2 class="st" style="text-align:center">Software for every<br><em>type of business</em></h2>
+      <p class="sub" style="margin:0 auto;text-align:center">Whether you run a small retail shop or a large manufacturing company — we have the right system for you.</p>
+    </div>
+    <div class="ind-grid">
+      <div class="ind-card r"><div class="ind-ico">🛒</div><div class="ind-title">Retail & Supermarkets</div><p class="ind-desc">POS, stock management, and supplier tracking built for high-volume retail environments with multiple cashier points.</p></div>
+      <div class="ind-card r d1"><div class="ind-ico">🍽️</div><div class="ind-title">Restaurants & Cafés</div><p class="ind-desc">Table management, kitchen display, order tracking, and daily sales reporting tailored for food service businesses.</p></div>
+      <div class="ind-card r d2"><div class="ind-ico">🏭</div><div class="ind-title">Manufacturing</div><p class="ind-desc">Production planning, raw material stock, finished goods inventory, and workforce management for factory operations.</p></div>
+      <div class="ind-card r"><div class="ind-ico">🏥</div><div class="ind-title">Healthcare & Clinics</div><p class="ind-desc">Patient management, appointment scheduling, pharmacy stock, staff payroll, and billing — all in one HIPAA-aware system.</p></div>
+      <div class="ind-card r d1"><div class="ind-ico">🏫</div><div class="ind-title">Schools & Education</div><p class="ind-desc">Student records, fee collection, staff HR, timetable management, and parent communication portals for modern schools.</p></div>
+      <div class="ind-card r d2"><div class="ind-ico">🏢</div><div class="ind-title">Corporate & Services</div><p class="ind-desc">Multi-department HR, project tracking, expense management, and custom web portals for professional service companies.</p></div>
+    </div>
+  </div>
+</section>
+
+<!-- TESTIMONIALS -->
+<section class="wrap" id="testimonials">
+  <div class="cont">
+    <div style="display:flex;align-items:flex-end;justify-content:space-between;flex-wrap:wrap;gap:20px">
+      <div class="r">
+        <div class="eyebrow">Client Stories</div>
+        <h2 class="st">What our clients<br><em>actually say</em></h2>
+      </div>
+      <a href="#cta" class="btn-outline r" style="flex-shrink:0">Book your demo →</a>
+    </div>
+    <div class="tgrid">
+
+      <!-- BIG CARD -->
+      <div class="tc big r">
+        <div class="tstars">★★★★★</div>
+        <p class="tq">"We operate five supermarket branches across the Western Province. Before Amectar, reconciling stock between branches was a full-day job for two people. Now our inventory syncs in real time — every item, every branch, always accurate. The reorder alerts alone have eliminated stockouts on our top 200 products entirely."</p>
+        <div class="tau">
+          <div class="tav" style="background:rgba(255,255,255,.2);color:white">RB</div>
+          <div>
+            <div class="tan">Rajitha Bandara</div>
+            <div class="tar">Managing Director · Bandara Retail Group (Pvt) Ltd · 5 branches across Colombo, Kaduwela &amp; Kelaniya · <em style="opacity:.75">Using: Stock &amp; Inventory + POS System</em></div>
+          </div>
+        </div>
+      </div>
+
+      <div class="tc r d1">
+        <div class="tstars">★★★★★</div>
+        <p class="tq">"I own three clothing boutiques in Kandy. My staff used to write sales in a book — I had zero visibility when I wasn't in the shop. Amectar's POS changed everything. I watch live sales from my phone and get daily reports automatically on WhatsApp every night."</p>
+        <div class="tau">
+          <div class="tav">SD</div>
+          <div>
+            <div class="tan">Sanduni Dissanayake</div>
+            <div class="tar">Owner · Sanduni Fashion Boutique · 3 outlets — Kandy City Centre, Peradeniya Rd &amp; Katugastota · <em style="opacity:.6">Using: POS System</em></div>
+          </div>
+        </div>
+      </div>
+
+      <div class="tc r d1">
+        <div class="tstars">★★★★★</div>
+        <p class="tq">"Our distribution business supplies 180 retail clients across the Southern Province. Tracking deliveries, invoices, and outstanding payments was chaos. Amectar built us a custom distribution management system and the difference in our collections efficiency is night and day."</p>
+        <div class="tau">
+          <div class="tav">CW</div>
+          <div>
+            <div class="tan">Chamara Wickramasinghe</div>
+            <div class="tar">Director · Southern Star Distributors (Pvt) Ltd · Galle · <em style="opacity:.6">Using: Custom Distribution + Stock System</em></div>
+          </div>
+        </div>
+      </div>
+
+      <div class="tc r">
+        <div class="tstars">★★★★★</div>
+        <p class="tq">"We stock over 6,500 hardware and construction items across two warehouses. Finding a system that handled bulk items, units of measure, and supplier credit terms correctly was impossible — until Amectar. They configured everything to match exactly how we operate."</p>
+        <div class="tau">
+          <div class="tav">NK</div>
+          <div>
+            <div class="tan">Nimal Kumarasinghe</div>
+            <div class="tar">Operations Manager · Kumarasinghe Hardware &amp; Building Materials · Negombo &amp; Wattala · <em style="opacity:.6">Using: Stock &amp; Inventory System</em></div>
+          </div>
+        </div>
+      </div>
+
+      <div class="tc r d1">
+        <div class="tstars">★★★★★</div>
+        <p class="tq">"Running a busy electronics shop means pricing changes daily and customers always ask for bills. Amectar's POS handles barcode scanning, warranty tracking, and customer receipts perfectly. The training took one afternoon — my staff were fully comfortable by end of day."</p>
+        <div class="tau">
+          <div class="tav">IS</div>
+          <div>
+            <div class="tan">Imran Saleem</div>
+            <div class="tar">Owner · TechZone Electronics · Main Street, Pettah, Colombo 11 · <em style="opacity:.6">Using: POS + Stock Management</em></div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+
+    <!-- ROW 2 -->
+    <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:18px;margin-top:18px;">
+
+      <div class="tc r">
+        <div class="tstars">★★★★★</div>
+        <p class="tq">"Our pharmacy has 3,000+ medicines with expiry dates, batch numbers, and controlled drug records. Amectar built us a system that tracks all of it and alerts us 60 days before anything expires. We've had zero compliance issues since going live."</p>
+        <div class="tau">
+          <div class="tav">DP</div>
+          <div>
+            <div class="tan">Dilshan Pathirana</div>
+            <div class="tar">Chief Pharmacist &amp; Owner · Pathirana Pharmacy (Pvt) Ltd · Maharagama · <em style="opacity:.6">Using: Pharmacy Stock System</em></div>
+          </div>
+        </div>
+      </div>
+
+      <div class="tc r d1">
+        <div class="tstars">★★★★★</div>
+        <p class="tq">"We have a restaurant with 12 tables and a takeaway counter running at the same time. Amectar's POS keeps orders separate, sends them to the kitchen display, and calculates bills instantly — including service charge and VAT. Rush hour is actually manageable now."</p>
+        <div class="tau">
+          <div class="tav">AF</div>
+          <div>
+            <div class="tan">Amali Fernando</div>
+            <div class="tar">Co-owner · The Plate Restaurant &amp; Takeaway · Nugegoda High Level Road · <em style="opacity:.6">Using: Restaurant POS System</em></div>
+          </div>
+        </div>
+      </div>
+
+      <div class="tc r d2">
+        <div class="tstars">★★★★★</div>
+        <p class="tq">"We run a wholesale stationery business supplying schools and offices. Managing credit accounts, delivery notes, and monthly statements for 300+ clients was overwhelming. The system Amectar built handles our entire order-to-collection cycle without us missing a single payment."</p>
+        <div class="tau">
+          <div class="tav">HG</div>
+          <div>
+            <div class="tan">Harini Gunawardena</div>
+            <div class="tar">Director (Finance &amp; Operations) · Lanka Office Supplies Ltd · Colombo 10 · <em style="opacity:.6">Using: Wholesale Management + Accounts System</em></div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- TECH & TOOLS -->
+<section class="wrap alt" id="tech">
+  <div class="cont">
+    <div style="text-align:center;max-width:560px;margin:0 auto" class="r">
+      <div class="eyebrow" style="justify-content:center">Technology &amp; Tools</div>
+      <h2 class="st" style="text-align:center">Built on technology<br>you can <em>rely on</em></h2>
+      <p class="sub" style="margin:0 auto;text-align:center;">We use proven, industry-standard technologies to build software that's fast, secure, and easy to maintain — no trendy experiments, just solid engineering.</p>
+    </div>
+
+    <!-- CATEGORY ROWS -->
+    <div style="display:flex;flex-direction:column;gap:1px;background:var(--stroke);border:1px solid var(--stroke);border-radius:14px;overflow:hidden;margin-top:56px;" class="r">
+
+      <!-- Row 1: Frontend -->
+      <div style="background:var(--white);padding:36px 40px;display:grid;grid-template-columns:200px 1fr;gap:40px;align-items:center;transition:background .3s;" onmouseenter="this.style.background='var(--blue-pale2)'" onmouseleave="this.style.background='var(--white)'">
+        <div>
+          <div style="font-size:.68rem;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--blue);margin-bottom:6px;">Frontend</div>
+          <div style="font-family:'Instrument Serif',serif;font-size:1.15rem;font-weight:400;color:var(--ink);line-height:1.3;">What your team sees &amp; uses</div>
+        </div>
+        <div style="display:flex;flex-wrap:wrap;gap:8px;">
+          <span class="tech-pill">⚛️ React.js</span>
+          <span class="tech-pill">🟨 JavaScript (ES6+)</span>
+          <span class="tech-pill">🎨 Tailwind CSS</span>
+          <span class="tech-pill">📱 Responsive Design</span>
+          <span class="tech-pill">🖥️ Electron (Desktop Apps)</span>
+          <span class="tech-pill">📲 Progressive Web Apps</span>
+        </div>
+      </div>
+
+      <!-- Row 2: Backend -->
+      <div style="background:var(--white);padding:36px 40px;display:grid;grid-template-columns:200px 1fr;gap:40px;align-items:center;transition:background .3s;" onmouseenter="this.style.background='var(--blue-pale2)'" onmouseleave="this.style.background='var(--white)'">
+        <div>
+          <div style="font-size:.68rem;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--blue);margin-bottom:6px;">Backend</div>
+          <div style="font-family:'Instrument Serif',serif;font-size:1.15rem;font-weight:400;color:var(--ink);line-height:1.3;">The engine behind your software</div>
+        </div>
+        <div style="display:flex;flex-wrap:wrap;gap:8px;">
+          <span class="tech-pill">🐘 PHP (Laravel)</span>
+          <span class="tech-pill">🟢 Node.js</span>
+          <span class="tech-pill">🐍 Python</span>
+          <span class="tech-pill">🔗 REST APIs</span>
+          <span class="tech-pill">🔐 JWT Authentication</span>
+          <span class="tech-pill">⚡ Redis Caching</span>
+        </div>
+      </div>
+
+      <!-- Row 3: Database -->
+      <div style="background:var(--white);padding:36px 40px;display:grid;grid-template-columns:200px 1fr;gap:40px;align-items:center;transition:background .3s;" onmouseenter="this.style.background='var(--blue-pale2)'" onmouseleave="this.style.background='var(--white)'">
+        <div>
+          <div style="font-size:.68rem;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--blue);margin-bottom:6px;">Database</div>
+          <div style="font-family:'Instrument Serif',serif;font-size:1.15rem;font-weight:400;color:var(--ink);line-height:1.3;">Secure, reliable data storage</div>
+        </div>
+        <div style="display:flex;flex-wrap:wrap;gap:8px;">
+          <span class="tech-pill">🐬 MySQL</span>
+          <span class="tech-pill">🐘 PostgreSQL</span>
+          <span class="tech-pill">🍃 MongoDB</span>
+          <span class="tech-pill">☁️ Cloud Backups (Daily)</span>
+          <span class="tech-pill">🔒 Encrypted Storage</span>
+        </div>
+      </div>
+
+      <!-- Row 4: Infrastructure -->
+      <div style="background:var(--white);padding:36px 40px;display:grid;grid-template-columns:200px 1fr;gap:40px;align-items:center;transition:background .3s;" onmouseenter="this.style.background='var(--blue-pale2)'" onmouseleave="this.style.background='var(--white)'">
+        <div>
+          <div style="font-size:.68rem;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--blue);margin-bottom:6px;">Infrastructure</div>
+          <div style="font-family:'Instrument Serif',serif;font-size:1.15rem;font-weight:400;color:var(--ink);line-height:1.3;">Always on, always available</div>
+        </div>
+        <div style="display:flex;flex-wrap:wrap;gap:8px;">
+          <span class="tech-pill">☁️ AWS</span>
+          <span class="tech-pill">🌊 DigitalOcean</span>
+          <span class="tech-pill">🐧 Linux (Ubuntu)</span>
+          <span class="tech-pill">🐳 Docker</span>
+          <span class="tech-pill">🔁 Auto Backups</span>
+          <span class="tech-pill">🔒 SSL / HTTPS</span>
+        </div>
+      </div>
+
+      <!-- Row 5: Integrations (dark) -->
+      <div style="background:var(--ink);padding:36px 40px;display:grid;grid-template-columns:200px 1fr;gap:40px;align-items:center;transition:background .3s;" onmouseenter="this.style.background='#0d1828'" onmouseleave="this.style.background='var(--ink)'">
+        <div>
+          <div style="font-size:.68rem;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:#6ba3ff;margin-bottom:6px;">Integrations</div>
+          <div style="font-family:'Instrument Serif',serif;font-size:1.15rem;font-weight:400;color:white;line-height:1.3;">Connects to your existing tools</div>
+        </div>
+        <div style="display:flex;flex-wrap:wrap;gap:8px;">
+          <span class="tech-pill-dk">💳 PayHere (Payments)</span>
+          <span class="tech-pill-dk">💬 Dialog SMS</span>
+          <span class="tech-pill-dk">📧 Email (SMTP)</span>
+          <span class="tech-pill-dk">🖨️ Receipt Printers</span>
+          <span class="tech-pill-dk">📷 Barcode Scanners</span>
+          <span class="tech-pill-dk">🖐️ Fingerprint Devices</span>
+          <span class="tech-pill-dk">📊 Excel / CSV Export</span>
+        </div>
+      </div>
+
+    </div>
+
+    <!-- BOTTOM TRUST ROW -->
+    <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:1px;background:var(--stroke);border:1px solid var(--stroke);border-radius:14px;overflow:hidden;margin-top:20px;" class="r">
+      <div style="background:var(--white);padding:28px 32px;transition:background .3s;" onmouseenter="this.style.background='var(--blue-pale2)'" onmouseleave="this.style.background='var(--white)'">
+        <div style="font-size:1.6rem;margin-bottom:10px;">🔒</div>
+        <div style="font-size:.9rem;font-weight:600;color:var(--ink);margin-bottom:5px;letter-spacing:-.01em;">Data Security First</div>
+        <p style="font-size:.82rem;color:var(--ink-60);line-height:1.6;font-weight:300;">All data is encrypted at rest and in transit. Role-based access ensures staff only see what they need to.</p>
+      </div>
+      <div style="background:var(--white);padding:28px 32px;transition:background .3s;" onmouseenter="this.style.background='var(--blue-pale2)'" onmouseleave="this.style.background='var(--white)'">
+        <div style="font-size:1.6rem;margin-bottom:10px;">💾</div>
+        <div style="font-size:.9rem;font-weight:600;color:var(--ink);margin-bottom:5px;letter-spacing:-.01em;">Daily Automated Backups</div>
+        <p style="font-size:.82rem;color:var(--ink-60);line-height:1.6;font-weight:300;">Your business data is backed up automatically every day. Restore any point in the last 30 days in minutes.</p>
+      </div>
+      <div style="background:var(--white);padding:28px 32px;transition:background .3s;" onmouseenter="this.style.background='var(--blue-pale2)'" onmouseleave="this.style.background='var(--white)'">
+        <div style="font-size:1.6rem;margin-bottom:10px;">📶</div>
+        <div style="font-size:.9rem;font-weight:600;color:var(--ink);margin-bottom:5px;letter-spacing:-.01em;">Works Offline Too</div>
+        <p style="font-size:.82rem;color:var(--ink-60);line-height:1.6;font-weight:300;">Our POS and stock systems keep working during internet outages and sync automatically when connection is restored.</p>
       </div>
     </div>
 
-    <!-- Social Media Glow Icons -->
-    <div class="flex justify-center gap-6 mb-8 animate-fade-in">
-      <a href="#" class="w-10 h-10 rounded-full flex items-center justify-center bg-white/10 hover:bg-white/20 transition hover:scale-125 text-cyan-400 shadow-lg">
-        <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24"><path d="M22 12a10 10 0 10-11.5 9.87v-6.99H8v-2.88h2.5V9.5c0-2.47 1.49-3.84 3.77-3.84 1.09 0 2.23.19 2.23.19v2.45h-1.25c-1.23 0-1.61.76-1.61 1.54v1.85H17l-.4 2.88h-2.35v6.99A10 10 0 0022 12z" /></svg>
-      </a>
-      <a href="#" class="w-10 h-10 rounded-full flex items-center justify-center bg-white/10 hover:bg-white/20 transition hover:scale-125 text-purple-400 shadow-lg">
-        <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24"><path d="M12 2.04c-5.5 0-9.96 4.46-9.96 9.96 0 4.42 3.59 8.06 8.17 8.94v-6.33h-2.45v-2.61h2.45V9.69c0-2.42 1.44-3.75 3.64-3.75 1.05 0 2.15.19 2.15.19v2.36h-1.21c-1.2 0-1.57.74-1.57 1.5v1.8h2.67l-.43 2.61h-2.24v6.33c4.58-.88 8.17-4.52 8.17-8.94 0-5.5-4.46-9.96-9.96-9.96z"/></svg>
-      </a>
-    </div>
+  </div>
+</section>
 
-    <!-- Footer Bottom -->
-    <div class="text-center text-gray-400 text-sm animate-fade-in">
-      <p>&copy; 2025 <span class="text-white font-semibold">amectar softwares</span>. All rights reserved.</p>
-      <p class="text-xs mt-2 text-gray-500">Globally connected 🌍 — Serving clients from Silicon Valley to Antarctica 🧊.</p>
+<!-- CTA -->
+<section id="cta">
+  <div class="cta-glow"></div>
+  <div class="cta-inner r">
+    <div class="eyebrow" style="justify-content:center;color:#6ba3ff;margin-bottom:16px">Get started today</div>
+    <h2 class="cta-h">Ready to run your business<br><em>the smarter way?</em></h2>
+    <p class="cta-p">Book a free, no-obligation demo with our team. We'll show you exactly how Amectar software can work for your specific business — and give you a clear quote on the spot.</p>
+    <div class="cta-form">
+      <input class="cta-inp" type="text" placeholder="Your name or business name">
+      <button class="cta-sbtn">Book demo →</button>
     </div>
+    <p class="cta-note">Free demo · No commitment · Response within 24 hours</p>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="fgrid">
+    <div class="fb">
+      <a class="logo-mark" href="#" style="color:white"><div class="logo-ico"></div>Amectar</a>
+      <p>Business software designed and built in Sri Lanka, for Sri Lankan businesses of every size and industry.</p>
+    </div>
+    <div class="fcol">
+      <h5>Our Software</h5>
+      <ul>
+        <li><a href="#">HR Management</a></li>
+        <li><a href="#">Stock & Inventory</a></li>
+        <li><a href="#">POS System</a></li>
+        <li><a href="#">Accounting</a></li>
+        <li><a href="#">Custom Development</a></li>
+      </ul>
+    </div>
+    <div class="fcol">
+      <h5>Company</h5>
+      <ul>
+        <li><a href="#">About Amectar</a></li>
+        <li><a href="#">Our Team</a></li>
+        <li><a href="#">Careers</a></li>
+        <li><a href="#">Blog</a></li>
+        <li><a href="#">Contact Us</a></li>
+      </ul>
+    </div>
+    <div class="fcol">
+      <h5>Support</h5>
+      <ul>
+        <li><a href="#">Client Login</a></li>
+        <li><a href="#">Documentation</a></li>
+        <li><a href="#">Training Videos</a></li>
+        <li><a href="#">Submit a Ticket</a></li>
+        <li><a href="#">+94 77 000 0000</a></li>
+      </ul>
+    </div>
+  </div>
+  <div class="fbot">
+    <div class="fcopy">© 2025 Amectar (Pvt) Ltd. All rights reserved. | Registered in Sri Lanka</div>
+    <div class="flinks"><a href="#">Privacy Policy</a><a href="#">Terms</a><a href="#">Facebook</a><a href="#">LinkedIn</a></div>
   </div>
 </footer>
 
+<script>
+// Cursor
+const c=document.getElementById('cur'),co=document.getElementById('cur-o');
+let mx=0,my=0,ox=0,oy=0;
+document.addEventListener('mousemove',e=>{mx=e.clientX;my=e.clientY;});
+(function a(){c.style.left=mx+'px';c.style.top=my+'px';ox+=(mx-ox)*.13;oy+=(my-oy)*.13;co.style.left=ox+'px';co.style.top=oy+'px';requestAnimationFrame(a);})();
+document.querySelectorAll('a,button,.pc,.pcard,.tc,.sr,.ind-card').forEach(el=>{
+  el.addEventListener('mouseenter',()=>document.body.classList.add('hov'));
+  el.addEventListener('mouseleave',()=>document.body.classList.remove('hov'));
+});
 
-    <script>
-        // Smooth scrolling for navigation links
-        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-            anchor.addEventListener('click', function (e) {
-                e.preventDefault();
-                const target = document.querySelector(this.getAttribute('href'));
-                if (target) {
-                    target.scrollIntoView({
-                        behavior: 'smooth',
-                        block: 'start'
-                    });
-                }
-            });
-        });
+// Reveal
+const obs=new IntersectionObserver(e=>e.forEach(x=>{if(x.isIntersecting)x.target.classList.add('on');}),{threshold:.1});
+document.querySelectorAll('.r').forEach(el=>obs.observe(el));
 
-        // Intersection Observer for fade-in animations
-        const observerOptions = {
-            threshold: 0.1,
-            rootMargin: '0px 0px -50px 0px'
-        };
+// Nav
+window.addEventListener('scroll',()=>{document.getElementById('nav').style.boxShadow=window.scrollY>20?'0 1px 20px rgba(0,0,0,.07)':'none';},{passive:true});
 
-        const observer = new IntersectionObserver((entries) => {
-            entries.forEach(entry => {
-                if (entry.isIntersecting) {
-                    entry.target.classList.add('visible');
-                }
-            });
-        }, observerOptions);
+// Smooth scroll
+document.querySelectorAll('a[href^="#"]').forEach(a=>{a.addEventListener('click',e=>{const t=document.querySelector(a.getAttribute('href'));if(t){e.preventDefault();t.scrollIntoView({behavior:'smooth'});}});});
 
-        // Observe all fade-in-up elements
-        document.querySelectorAll('.fade-in-up').forEach(el => {
-            observer.observe(el);
-        });
+// Chart bar animation
+const bars=[...document.querySelectorAll('.cb')];
+setInterval(()=>bars.forEach(b=>{const h=parseInt(b.style.height);b.style.height=Math.max(20,Math.min(100,h+(Math.random()-.5)*10))+'%';}),2400);
 
-        // Add interactive hover effects to buttons
-        document.querySelectorAll('button').forEach(button => {
-            button.addEventListener('mouseenter', function() {
-                this.style.transform = 'scale(1.05)';
-            });
-            
-            button.addEventListener('mouseleave', function() {
-                this.style.transform = 'scale(1)';
-            });
-        });
+// Parallax
+window.addEventListener('scroll',()=>{const m=document.querySelector('.hero-mesh');if(m)m.style.transform=`translateY(${window.scrollY*.26}px)`;},{passive:true});
 
-        // Dynamic particle generation
-        function createParticle() {
-            const particle = document.createElement('div');
-            particle.className = 'particle';
-            particle.style.left = Math.random() * 100 + '%';
-            particle.style.animationDelay = Math.random() * 8 + 's';
-            document.querySelector('.fixed.inset-0').appendChild(particle);
-            
-            setTimeout(() => {
-                particle.remove();
-            }, 8000);
-        }
-
-        // Create new particles periodically
-        setInterval(createParticle, 2000);
-    </script>
-<script>(function(){function c(){var b=a.contentDocument||a.contentWindow.document;if(b){var d=b.createElement('script');d.innerHTML="window.__CF$cv$params={r:'9682a74ef09dde84',t:'MTc1NDAyMzE4Ni4wMDAwMDA='};var a=document.createElement('script');a.nonce='';a.src='/cdn-cgi/challenge-platform/scripts/jsd/main.js';document.getElementsByTagName('head')[0].appendChild(a);";b.getElementsByTagName('head')[0].appendChild(d)}}if(document.body){var a=document.createElement('iframe');a.height=1;a.width=1;a.style.position='absolute';a.style.top=0;a.style.left=0;a.style.border='none';a.style.visibility='hidden';document.body.appendChild(a);if('loading'!==document.readyState)c();else if(window.addEventListener)document.addEventListener('DOMContentLoaded',c);else{var e=document.onreadystatechange||function(){};document.onreadystatechange=function(b){e(b);'loading'!==document.readyState&&(document.onreadystatechange=e,c())}}}})();</script></body>
+// Form submit
+function handleFormSubmit(e){
+  e.preventDefault();
+  document.getElementById('contactForm').style.display='none';
+  document.getElementById('formSuccess').style.display='block';
+}
+</script>
+</body>
 </html>
